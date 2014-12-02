@@ -31,27 +31,10 @@ class Application_Model_SurveyMapper extends Application_Model_AbstractMapper
         $survey = new Application_Model_Survey();
         
         $survey->setId($row->id)
-        ->setName($row->name);
+               ->setName($row->name)
+               ->setDescription($row->description);
         
         return $survey;
     }
-    
-    /**
-     * Fetches all the surveys
-     * @return array
-     */
-    public function fetchAll()
-    {
-        $resultSet = $this->getDbTable($this->_dbTableClassName)->fetchAll();
-        $entries   = array();
-        foreach ($resultSet as $row) {
-            $entry = new Application_Model_Survey();
-            	
-            $entry->setId($row->id)
-            ->setName($row->name);
-            	
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
+     
 }

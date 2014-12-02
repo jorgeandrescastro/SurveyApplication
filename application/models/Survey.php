@@ -20,6 +20,12 @@ class Application_Model_Survey
     protected $_name;
     
     /**
+     * Description of the survey
+     * @var string
+     */
+    protected $_description;
+    
+    /**
      * Blocks from the survey
      * @var array
      */
@@ -66,6 +72,26 @@ class Application_Model_Survey
     public function getName()
     {
         return $this->_name;
+    }
+    
+    /**
+     * Setter for description
+     * @param string $description
+     * @return Application_Model_Survey
+     */
+    public function setDescription($description) 
+    {
+        $this->_description = $description;
+        return $this;
+    }
+    
+    /**
+     * Getter for description
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->_description;
     }
     
     /**

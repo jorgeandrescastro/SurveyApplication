@@ -38,4 +38,28 @@ class Application_Model_BlockMapper extends Application_Model_AbstractMapper
         return $block;
     }
     
+    /**
+     * Fetches all the blocks from a survey
+     * @param Application_Model_Survey $survey
+     * @return array:Application_Model_Block 
+     */
+    public function fetchBlocksFromSurvey(Application_Model_Survey $survey)
+    {
+        $select = $this->getDbTable($this->_dbTableClassName)
+                       ->select()->where('survey_id = ?', $survey->getId());
+        
+        $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
+        $blocks = array();
+        
+        foreach($resultSet as $row) {
+            $block = new Application_Model_Block();
+            $block->setId($row['id'])
+                  ->setName($row['name']);
+            	
+            $blocks[$row['id']] = $block;
+        }
+        
+        return $blocks;
+    }
+    
 }

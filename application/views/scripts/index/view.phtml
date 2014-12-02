@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-8 survey-body">
+    <p class="lead"><? echo utf8_encode($this->block->getName()); ?></p>
+    <?  echo $this->form; ?>
+  </div>
+  <div class="col-md-4 survey-sidebar">
+    <?php echo $this->partial('common/sidebar.phtml', array('blocks' => $this->blocks, 'current' => $this->current)); ?>
+  </div>
+</div>

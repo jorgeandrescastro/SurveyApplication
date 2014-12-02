@@ -1,0 +1,9 @@
+<ul class="nav nav-pills nav-stacked">
+    <?foreach($this->blocks as $id => $block) {
+    	$class = '';
+        if ($this->current == $id)
+        	$class = 'active';
+    ?>
+        <li role="presentation" class="<?echo $class ?>"><a href="#"><? echo utf8_encode($block->getName()); ?></a></li>
+    <?} ?>
+</ul>

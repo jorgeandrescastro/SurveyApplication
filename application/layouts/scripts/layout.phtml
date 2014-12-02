@@ -1,17 +1,24 @@
 <?php echo $this->doctype() ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Universidad del Valle</title>
-  <?php echo $this->headLink()->appendStylesheet('/css/global.css'); ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Universidad del Valle</title>
+    <?php 
+        echo $this->headLink()->appendStylesheet('/css/global.css');
+        echo $this->headLink()->appendStylesheet('/css/bootstrap.min.css'); 
+        echo $this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+        echo $this->headScript()->appendFile('/js/bootstrap.min.js');
+    ?>
 </head>
-<body>
-<div class="header bold">
-	Encuestas
-</div>
-<br/>
-
-<?php echo $this->layout()->content ?>
- 
+<body> 
+    <div class="container">
+        <div class="header">
+            <img class="pull-left" src="<?=$this->baseUrl()?>/images/logoUni.png" />
+            <img class="pull-right" src="<?=$this->baseUrl()?>/images/logoencuesta.png" />
+        </div>
+        <div class="content">
+            <?php echo $this->layout()->content ?>
+        </div>
+     </div>
 </body>
 </html>

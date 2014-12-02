@@ -14,6 +14,7 @@ class Application_Model_Question
     const QUESTION_TEXT = 1;
     const QUESTION_RADIO_OPTION = 2;
     const QUESTION_CHECK_BOX = 3;
+    const QUESTION_SELECT = 4;
     
     
     /**
@@ -39,6 +40,12 @@ class Application_Model_Question
      * @var arr
      */
     protected $_answers;
+    
+    /**
+     * Is the question required?
+     * @var int
+     */
+    protected $_required;
     
     public function __construct(array $options = null)
     {
@@ -122,5 +129,25 @@ class Application_Model_Question
     public function getAnswers()
     {
         return $this->_answers;
+    }
+    
+    /**
+     * Setter for required
+     * @param int $required
+     * @return Application_Model_Question
+     */
+    public function setRequired($required)
+    {
+        $this->_required = $required;
+        return $this;
+    }
+    
+    /**
+     * Returns if the question is required
+     * @return boolean
+     */
+    public function isRequired()
+    {
+        return (1 == $this->_required);
     }
 }
