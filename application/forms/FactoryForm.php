@@ -13,7 +13,7 @@ class Application_Form_FactoryForm extends Zend_Form
 		
 		$this->setName('surveyBlock' . $block->getId() );
 		$this->setMethod('POST');
-		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . '/index/view');
+		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . '/index/view/');
 		
 		$elements = array();
 		

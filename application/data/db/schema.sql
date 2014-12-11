@@ -293,6 +293,17 @@ INSERT INTO `univalle_survey_information`.`answers` (`text`, `question_id`) VALU
 INSERT INTO `univalle_survey_information`.`answers` (`text`, `question_id`) VALUES ('La re-envía sólo a personas que le hayan manifestado que están buscando empleo', '41');
 INSERT INTO `univalle_survey_information`.`answers` (`text`, `question_id`) VALUES ('No la re-envía', '41');
 
+  
+CREATE TABLE `univalle_survey_information`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `fbid` INT NULL,
+  `name` VARCHAR(200) NULL,
+  `startDate` INT NULL,
+  `finishDate` INT NULL,
+  `currentBlock` INT NULL,
+  PRIMARY KEY (`id`));
+  
+
 
 
 

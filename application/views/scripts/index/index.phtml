@@ -1,8 +1,12 @@
 <h2><?echo $this->survey->getName(); ?></h2>
-<p class="lead"><?echo utf8_encode($this->survey->getDescription()); ?></p>
+<p class="lead">
+    Bienvenido: <? echo $this->user->getName(); ?>
+    <br/>
+    <?echo utf8_encode($this->survey->getDescription()); ?>
+</p>
 
 <?php 
-$url = $url = $this->url(array('controller' => 'index', 'action' => 'view', 'id' => $this->survey->getId()));
+$url = $this->url(array('controller' => 'index', 'action' => 'view'));
 ?>
 <a class="btn btn-primary btn-lg" href="<? echo $url; ?>" role="button">
     Empezar Encuesta...

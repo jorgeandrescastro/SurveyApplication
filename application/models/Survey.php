@@ -113,4 +113,13 @@ class Application_Model_Survey
     {
         return $this->_blocks;
     }
+    
+    /**
+     * Returns the first block of the survey
+     * @return Application_Model_Block
+     */
+    public function getInitialBlock()
+    {
+        return reset($this->_blocks);
+    }
 }
