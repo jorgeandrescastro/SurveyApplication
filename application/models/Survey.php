@@ -122,4 +122,25 @@ class Application_Model_Survey
     {
         return reset($this->_blocks);
     }
+    
+    /**
+     * Returns the next block on the survey
+     * @param int $currentBlock
+     * @return Application_Model_Block
+     */
+    public function getNextBlock($currentBlock)
+    {
+        $blockAmount = count($this->_blocks);
+        $x = 0;
+        while($x < $blockAmount) {
+            $block = current($this->_blocks);
+            if($block->getId() == $currentBlock){
+                return next($this->_blocks);
+            }
+            next($this->_blocks);
+            $x++;
+        }
+        
+        return;
+    }
 }

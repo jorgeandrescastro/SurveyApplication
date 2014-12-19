@@ -303,6 +303,26 @@ CREATE TABLE `univalle_survey_information`.`users` (
   `currentBlock` INT NULL,
   PRIMARY KEY (`id`));
   
+CREATE TABLE `univalle_survey_information`.`user_data` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `block_id` INT NULL,
+  `results` LONGBLOB NULL,
+  PRIMARY KEY (`id`),
+  INDEX `user_id_idx` (`user_id` ASC),
+  INDEX `block_id_idx` (`block_id` ASC),
+  CONSTRAINT `user_data_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `univalle_survey_information`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `block_data_id`
+    FOREIGN KEY (`block_id`)
+    REFERENCES `univalle_survey_information`.`blocks` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+
 
 
 

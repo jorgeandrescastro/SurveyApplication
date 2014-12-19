@@ -33,8 +33,6 @@ class IndexController extends Zend_Controller_Action
     
     public function viewAction()
     {	
-        $request = $this->getRequest();
-                
         if ($this->_user->hasFinishedSurvey()) {
             $this->_redirect('index/thankyou');
         }
@@ -56,10 +54,26 @@ class IndexController extends Zend_Controller_Action
         
         $form 				 = new Application_Form_FactoryForm(null, $currentBlock);
         
+        $request = $this->getRequest();
         if($request->isPost()) {
             if($form->isValid($this->_request->getPost())) {
+                
+                $currentBlock = $this->_survey->getNextBlock($this->_user->getCurrentBlock());
+                if(!empty($currentBlock)) {
+                    
+                    $this->_user->setCurrentBlock($currentBlock->getId());
+                    $mapper = new Application_Model_UserMapper();
+                    
+                    $mapper->save($this->_user);
+                    
+                    $mapper              = new Application_Model_QuestionMapper();
+                    $questions           = $mapper->fetchQuestionsFromBlock($currentBlock);
+                    $currentBlock->setQuestions($questions);
+                    $form 				 = new Application_Form_FactoryForm(null, $currentBlock);
+                    
+                }
+                
                 //TODO: Saving of results
-                print_r($form);die();
             }
         }
         
@@ -76,9 +90,14 @@ class IndexController extends Zend_Controller_Action
     private function getUserFromFacebook()
     {
     	//TODO: Get facebook information
-    	$user = new Application_Model_User(12345, "Facebook User 1");
-//     	$user = new Application_Model_User(123456, "Facebook User 2");
-    	$userMapper = new Application_Model_UserMapper();
+    	$facebook_id = 312345;
+        $userMapper = new Application_Model_UserMapper();
+        $user = $userMapper->findByFacebookId($facebook_id);
+        
+        if(empty($user)) {
+            $user = new Application_Model_User($facebook_id, "Facebook User 3");
+        } 
+            	
     	$userMapper->save($user);
     	
         return $user;

@@ -46,7 +46,8 @@ class Application_Model_BlockMapper extends Application_Model_AbstractMapper
     public function fetchBlocksFromSurvey(Application_Model_Survey $survey)
     {
         $select = $this->getDbTable($this->_dbTableClassName)
-                       ->select()->where('survey_id = ?', $survey->getId());
+                       ->select()->where('survey_id = ?', $survey->getId())
+                       ->order(array('weight ASC'));
         
         $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
         $blocks = array();
