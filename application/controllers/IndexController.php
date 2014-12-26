@@ -27,6 +27,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {		        
+        $test = new Application_Model_FB();
+        $test->getProfileInformation();        
         $this->view->user   = $this->_user;
         $this->view->survey = $this->_survey;
     }
