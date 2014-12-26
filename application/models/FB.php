@@ -1,6 +1,6 @@
 <?php
-define('FACEBOOK_SDK_V4_SRC_DIR', '../../library/facebook-php-sdk-v4-4.0-dev/src/Facebook/');
-require __DIR__ . '../../library/facebook-php-sdk-v4-4.0-dev/autoload.php';
+define('FACEBOOK_SDK_V4_SRC_DIR', '/../../library/facebook-php-sdk-v4-4.0-dev/src/Facebook/');
+require __DIR__ . '/../../library/facebook-php-sdk-v4-4.0-dev/autoload.php';
 
 use Facebook\HttpClients\FacebookHttpable;
 use Facebook\HttpClients\FacebookCurl;
