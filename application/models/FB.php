@@ -83,7 +83,7 @@ class Application_Model_FB
                 $response = $request->execute();
                 $me = $response->getGraphObject();
                 
-                echo $me->getProperty('name');
+                $print_r($me);
             }catch(FacebookRequestException $e) {
         		echo $e->getMessage();
         	}
