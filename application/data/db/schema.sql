@@ -323,6 +323,8 @@ CREATE TABLE `univalle_survey_information`.`user_data` (
     ON UPDATE CASCADE);
 
 
+ALTER TABLE `univalle_survey_information`.`users` 
+CHANGE COLUMN `fbid` `fbid` BIGINT UNSIGNED NULL DEFAULT NULL ;
 
 
 

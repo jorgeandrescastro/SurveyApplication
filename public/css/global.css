@@ -7,3 +7,10 @@
 .content {
 	clear: both;
 }
+
+.footer {
+	background-color: #34b5d0;
+	height: 78px;
+	margin-top: 30px;
+	padding: 8px 18px 0 0;
+}
