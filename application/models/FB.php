@@ -83,7 +83,7 @@ class Application_Model_FB
                 $response = $request->execute();
                 $me = $response->getGraphObject();
                 
-                print_r($me);
+                return $me;
             }catch(FacebookRequestException $e) {
         		echo $e->getMessage();
         	}
@@ -96,6 +96,13 @@ class Application_Model_FB
     
     public function getProfileInformation()
     {
-        $this->authenticate();
+        $me = $this->authenticate();
+        
+        $userInfo = array('id' => $me->getProperty('id'),
+                          'name' => $me->getProperty('name'),
+                          'firstName' => $me->getProperty('first_name'),
+        );
+        
+        return $userInfo;
     }
 }

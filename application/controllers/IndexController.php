@@ -26,9 +26,7 @@ class IndexController extends Zend_Controller_Action
 	}
 
     public function indexAction()
-    {		        
-        $test = new Application_Model_FB();
-        $test->getProfileInformation();        
+    {		              
         $this->view->user   = $this->_user;
         $this->view->survey = $this->_survey;
     }
@@ -91,13 +89,14 @@ class IndexController extends Zend_Controller_Action
     
     private function getUserFromFacebook()
     {
-    	//TODO: Get facebook information
-    	$facebook_id = 312345;
+    	$facebookConnection = new Application_Model_FB();
+    	$facebookUserInformation = $facebookConnection->getProfileInformation();
+    	
         $userMapper = new Application_Model_UserMapper();
-        $user = $userMapper->findByFacebookId($facebook_id);
+        $user = $userMapper->findByFacebookId($facebookUserInformation['id']);
         
         if(empty($user)) {
-            $user = new Application_Model_User($facebook_id, "Facebook User 3");
+            $user = new Application_Model_User($facebookUserInformation['id'], $facebookUserInformation['name']);
         } 
             	
     	$userMapper->save($user);
