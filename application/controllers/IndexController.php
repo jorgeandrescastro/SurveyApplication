@@ -19,7 +19,9 @@ class IndexController extends Zend_Controller_Action
 	
 	public function init()
 	{
-	    $this->_user   = $this->getUserFromFacebook();
+	    if(is_null($this->_user) || empty($this->_user)) {
+	        $this->_user   = $this->getUserFromFacebook();
+	    }	    
 	    
 	    $mapper        = new Application_Model_SurveyMapper();
 	    $this->_survey = $mapper->find(1);
