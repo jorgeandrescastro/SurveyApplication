@@ -82,7 +82,7 @@ class IndexController extends Zend_Controller_Action
                     $mapper              = new Application_Model_QuestionMapper();
                     $questions           = $mapper->fetchQuestionsFromBlock($currentBlock);
                     $currentBlock->setQuestions($questions);
-                    $form 				 = new Application_Form_FactoryForm(null, $currentBlock);
+                    $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
                     
                 }
                 
