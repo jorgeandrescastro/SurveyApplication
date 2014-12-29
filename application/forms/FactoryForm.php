@@ -7,13 +7,13 @@
  */
 class Application_Form_FactoryForm extends Zend_Form
 {
-	public function __construct($options = null, Application_Model_Block $block)
+	public function __construct($options = null, Application_Model_Block $block, $uid)
 	{
 		parent::__construct($options);
 		
-		$this->setName('surveyBlock' . $block->getId() );
+		$this->setName('surveyBlock' . $block->getId());
 		$this->setMethod('POST');
-		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . '/index/view/');
+		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . "/index/view/iid/$uid");
 		
 		$elements = array();
 		

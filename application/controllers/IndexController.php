@@ -65,7 +65,7 @@ class IndexController extends Zend_Controller_Action
         $questions           = $mapper->fetchQuestionsFromBlock($currentBlock);
         $currentBlock->setQuestions($questions);
         
-        $form 				 = new Application_Form_FactoryForm(null, $currentBlock);
+        $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
         
         $request = $this->getRequest();
         if($request->isPost()) {
