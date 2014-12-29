@@ -7,7 +7,7 @@
 </p>
 
 <?php 
-$url = $this->url(array('controller' => 'index', 'action' => 'view'));
+$url = $this->url(array('controller' => 'index', 'action' => 'view', 'iid' => $this->user->getId()));
 ?>
 <a class="btn btn-primary btn-lg" href="<? echo $url; ?>" role="button">
     Empezar Encuesta...

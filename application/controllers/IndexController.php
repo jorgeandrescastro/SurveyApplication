@@ -19,16 +19,27 @@ class IndexController extends Zend_Controller_Action
 	
 	public function init()
 	{
-	    if(is_null($this->_user) || empty($this->_user)) {
+	    $request = $this->getRequest();	    
+	    $internalUserId = $request->getParam('iid');
+	    
+	    if(is_null($internalUserId) || empty($internalUserId)){
+	        //TODO: Uncomment
 	        $this->_user   = $this->getUserFromFacebook();
-	    }	    
+	        
+	        //TODO: Delete test code
+// 	        $mapper = new Application_Model_UserMapper();
+// 	        $this->_user = $mapper->find(1);
+	    } else {
+	        $mapper = new Application_Model_UserMapper();
+	        $this->_user = $mapper->find($internalUserId);
+	    }
 	    
 	    $mapper        = new Application_Model_SurveyMapper();
 	    $this->_survey = $mapper->find(1);
 	}
 
     public function indexAction()
-    {		              
+    {		                              
         $this->view->user   = $this->_user;
         $this->view->survey = $this->_survey;
     }

@@ -28,7 +28,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
         
         $row = $result->current();
         
-        $user = new Application_Model_User();
+        $user = new Application_Model_User(0, '');
         
         $user->setId($row->id)
              ->setFbid($row->id)
