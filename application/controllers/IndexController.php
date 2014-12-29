@@ -115,7 +115,7 @@ class IndexController extends Zend_Controller_Action
         } 
             	
     	$userMapper->save($user);
-    	
+    	print_r($user);
         return $user;
     }
     
