@@ -84,6 +84,8 @@ class IndexController extends Zend_Controller_Action
                     $currentBlock->setQuestions($questions);
                     $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
                     
+                } else {
+                    $this->_redirect('index/thankyou');
                 }
                 
                 //TODO: Saving of results
