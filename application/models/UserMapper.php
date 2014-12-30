@@ -72,7 +72,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
      * @param Application_Model_User $user
      * @return int
      */
-    public function save(Application_Model_User $user) 
+    public function save(Application_Model_User &$user) 
     {
         $data = array(
         	'id' => $user->getId(),
@@ -89,6 +89,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
         } else {
             unset($data['id']);
             $userId = $this->getDbTable($this->_dbTableClassName)->insert($data);
+            $user->setId($userId);
             return $userId;
         }
         
