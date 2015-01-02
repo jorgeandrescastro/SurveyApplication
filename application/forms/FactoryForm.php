@@ -11,7 +11,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	{
 		parent::__construct($options);
 		
-		$this->setName('surveyBlock' . $block->getId());
+		$this->setName('surveyBlock_' . $block->getId());
 		$this->setMethod('POST');
 		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . "/index/view/iid/$uid");
 		
@@ -27,14 +27,7 @@ class Application_Form_FactoryForm extends Zend_Form
 		$submitButton = new Zend_Form_Element_Submit('continue');
 		$submitButton->setLabel('Continuar')
 		             ->setAttrib('class', 'form-control btn-primary');
-		
-// 		$submitButton->setDecorators(array(
-// 		        'ViewHelper',
-// 		        'Description',
-// 		        'Errors',
-// 		        array(array('data'=>'HtmlTag'), array('tag' => 'td','colspan'=>'2','class'=>'center')),
-// 		        array(array('row'=>'HtmlTag'),array('tag'=>'tr', 'closeOnly'=>'true'))
-// 		));
+
         $elements[] = $submitButton;
 		
 		$this->addElements($elements);
@@ -55,6 +48,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	                   array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => 'form-group'))
 	           ));
 	           $field->setAttrib('class', 'form-control');
+	           
 	       	   break;
 	       case Application_Model_Question::QUESTION_SELECT:
 	       	   $field = new Zend_Form_Element_Select('question_' . $question->getId());
@@ -96,7 +90,14 @@ class Application_Form_FactoryForm extends Zend_Form
 	   }   
 	   
 	   $field->setLabel(utf8_encode($question->getText()))
-	         ->setRequired($question->isRequired());
+	         ->setRequired($question->isRequired())
+	         ->setErrorMessages(array('isEmpty'=>'Este campo es obligatorio'));;
+
+        if($question->isNumeric()) {
+            $field->addValidator('Between', false, array('min' => $question->getMin(), 'max' => $question->getMax()))
+                  ->setErrorMessages(array('Between'=>'El valor debe estar entre ' .
+                                                       $question->getMin() . ' y ' . $question->getMax()));
+        }	   
 
 	   return $field; 
 	}

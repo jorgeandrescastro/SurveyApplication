@@ -124,6 +124,15 @@ class Application_Model_Survey
     }
     
     /**
+     * Returns the last block of the survey
+     * @return Application_Model_Block
+     */
+    public function getFinalBlock()
+    {
+        return end($this->_blocks);
+    }
+    
+    /**
      * Returns the next block on the survey
      * @param int $currentBlock
      * @return Application_Model_Block

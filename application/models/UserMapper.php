@@ -31,7 +31,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
         $user = new Application_Model_User(0, '');
         
         $user->setId($row->id)
-             ->setFbid($row->id)
+             ->setFbid($row->fbid)
              ->setName($row->name)
              ->setStartDate($row->startDate)
              ->setFinishDate($row->finishDate)

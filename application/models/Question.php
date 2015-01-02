@@ -47,6 +47,24 @@ class Application_Model_Question
      */
     protected $_required;
     
+    /**
+     * Is the question's answer numeric?
+     * @var int
+     */
+    protected $_numeric;
+    
+    /**
+     * Minimum Value for numeric answers
+     * @var int
+     */
+    protected $_minValue;
+    
+    /**
+     * Maximum Value for numeric answers
+     * @var int
+     */
+    protected $_maxValue;
+    
     public function __construct(array $options = null)
     {
     }
@@ -149,5 +167,65 @@ class Application_Model_Question
     public function isRequired()
     {
         return (1 == $this->_required);
+    }
+    
+    /**
+     * Setter for numeric
+     * @param int $numeric
+     * @return Application_Model_Question
+     */
+    public function setNumeric($numeric)
+    {
+        $this->_numeric = $numeric;
+        return $this;
+    }
+    
+    /**
+     * Returns if the question's answer is numeric
+     * @return boolean
+     */
+    public function isNumeric()
+    {
+        return (1 == $this->_numeric);
+    }
+    
+    /**
+     * Setter for Max Value
+     * @param int $value
+     * @return Application_Model_Question
+     */
+    public function setMax($value)
+    {
+        $this->_maxValue = $value;
+        return $this;
+    }
+    
+    /**
+     * Getter for Max Value
+     * @return int
+     */
+    public function getMax()
+    {
+        return $this->_maxValue;
+    }
+    
+    /**
+     * Setter for Min Value
+     * @param int $value
+     * @return Application_Model_Question
+     */
+    public function setMin($value)
+    {
+        $this->_minValue = $value;
+        return $this;
+    }
+    
+    /**
+     * Getter for Min Value
+     * @return int
+     */
+    public function getMin()
+    {
+        return $this->_minValue;
     }
 }

@@ -24,11 +24,11 @@ class IndexController extends Zend_Controller_Action
 	    
 	    if(is_null($internalUserId) || empty($internalUserId)){
 	        //TODO: Uncomment
-	        $this->_user   = $this->getUserFromFacebook();
+// 	        $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
-// 	        $mapper = new Application_Model_UserMapper();
-// 	        $this->_user = $mapper->find(1);
+	        $mapper = new Application_Model_UserMapper();
+	        $this->_user = $mapper->find(1);
 	    } else {
 	        $mapper = new Application_Model_UserMapper();
 	        $this->_user = $mapper->find($internalUserId);
@@ -58,7 +58,7 @@ class IndexController extends Zend_Controller_Action
             $firstBlock = $this->_survey->getInitialBlock();
             $this->_user->setCurrentBlock($firstBlock->getId());
         }
-        
+                
         $currentBlock        = $mapper->find($this->_user->getCurrentBlock());
         
         $mapper              = new Application_Model_QuestionMapper();
@@ -70,6 +70,8 @@ class IndexController extends Zend_Controller_Action
         $request = $this->getRequest();
         if($request->isPost()) {
             if($form->isValid($this->_request->getPost())) {
+                
+                print_r($form);die();
                 
                 $currentBlock = $this->_survey->getNextBlock($this->_user->getCurrentBlock());
                 if(!empty($currentBlock)) {
@@ -84,9 +86,7 @@ class IndexController extends Zend_Controller_Action
                     $currentBlock->setQuestions($questions);
                     $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
                     
-                } else {
-                    $this->_redirect('index/thankyou');
-                }
+                } 
                 
                 //TODO: Saving of results
             }

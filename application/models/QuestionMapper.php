@@ -35,7 +35,10 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
         $question->setId($row->id)
                  ->setText($row->text)
                  ->setType($row->type)
-                 ->setRequired($row->required);
+                 ->setRequired($row->required)
+                 ->setNumeric($row->numeric)
+                 ->setMax($row->max)
+                 ->setMin($row->min);
         
         return $question;
     }
@@ -58,7 +61,10 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
             $question->setId($row['id'])
                      ->setText($row['text'])
                      ->setType($row['type'])
-                     ->setRequired($row['required']);
+                     ->setRequired($row['required'])
+                     ->setNumeric($row['numeric'])
+                     ->setMax($row['max'])
+                     ->setMin($row['min']);
             
             $answers = $this->getAnswersFromQuestion($question);
              
