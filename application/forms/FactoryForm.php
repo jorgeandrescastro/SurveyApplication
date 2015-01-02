@@ -17,6 +17,14 @@ class Application_Form_FactoryForm extends Zend_Form
 		
 		$elements = array();
 		
+		$field = new Zend_Form_Element_Hidden('block');
+		$field->setValue($block->getId());
+		$elements[] = $field;
+		
+		$field = new Zend_Form_Element_Hidden('user');
+		$field->setValue($uid);
+		$elements[] = $field;
+		
 		foreach ($block->getQuestions() as $question)
 		{
             $field = Application_Form_FactoryForm::createField($question);

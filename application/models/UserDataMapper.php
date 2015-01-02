@@ -28,7 +28,7 @@ class Application_Model_UserDataMapper extends Application_Model_AbstractMapper
                 'results' => serialize($userData->getResults())
         );
     
-        if (is_null($user->getId())) {
+        if (is_null($data['id'])) {
             unset($data['id']);
             $userDataId = $this->getDbTable($this->_dbTableClassName)->insert($data);
             return $userDataId;

@@ -70,9 +70,10 @@ class IndexController extends Zend_Controller_Action
         $request = $this->getRequest();
         if($request->isPost()) {
             if($form->isValid($this->_request->getPost())) {
-                
-                print_r($form);die();
-                
+
+                //Persist the User Data
+                $this->persistUserData($form->getValues());
+
                 $currentBlock = $this->_survey->getNextBlock($this->_user->getCurrentBlock());
                 if(!empty($currentBlock)) {
                     
@@ -86,9 +87,7 @@ class IndexController extends Zend_Controller_Action
                     $currentBlock->setQuestions($questions);
                     $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
                     
-                } 
-                
-                //TODO: Saving of results
+                }                 
             }
         }
         
@@ -102,6 +101,10 @@ class IndexController extends Zend_Controller_Action
     {
     }
     
+    /**
+     * Gets the user information from Facebook
+     * @return Application_Model_User
+     */
     private function getUserFromFacebook()
     {
     	$facebookConnection = new Application_Model_FB();
@@ -117,6 +120,33 @@ class IndexController extends Zend_Controller_Action
     	$userMapper->save($user);
 
         return $user;
+    }
+    
+    
+    /**
+     * Persist the data on the database
+     * @param array $data
+     * @return boolean
+     */
+    private function persistUserData($data) 
+    {
+        if(!isset($data['block']) || !isset($data['user'])) {
+            return false;
+        }
+        
+        $blockId = $data['block'];
+        $userId = $data['user'];
+        
+        unset($data['block']);
+        unset($data['user']);
+        
+        $userData = new Application_Model_UserData($userId, $blockId, $data);
+        
+        $userDataMapper = new Application_Model_UserDataMapper();
+        $userDataMapper->save($userData);
+
+        return true;
+        
     }
     
 }
