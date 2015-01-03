@@ -17,8 +17,16 @@ class IndexController extends Zend_Controller_Action
 	 */
 	private $_user;
 	
+	/**
+	 * Mappers 
+	 * @var array
+	 */
+	private $_mappers;
+	
 	public function init()
 	{
+	    $this->_mappers = Application_Model_MapperFactory::getMappers();
+	    
 	    $request = $this->getRequest();	    
 	    $internalUserId = $request->getParam('iid');
 	    
@@ -27,42 +35,41 @@ class IndexController extends Zend_Controller_Action
 // 	        $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
-	        $mapper = new Application_Model_UserMapper();
-	        $this->_user = $mapper->find(1);
+	        $this->_user = $this->_mappers['USER']->find(1);
 	    } else {
-	        $mapper = new Application_Model_UserMapper();
-	        $this->_user = $mapper->find($internalUserId);
+	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
 	    
-	    $mapper        = new Application_Model_SurveyMapper();
-	    $this->_survey = $mapper->find(1);
+	    $this->_survey = $this->_mappers['SURVEY']->find(1);
 	}
 
     public function indexAction()
-    {		                              
+    {		   
+        if ($this->_user->hasFinishedSurvey()) {
+            $this->_redirect('index/thankyou');
+        }
+        
+        $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
+        $this->_survey->setBlocks($blocks);
+        
+        if(0 == $this->_user->getCurrentBlock()) {
+            $firstBlock = $this->_survey->getInitialBlock();            
+            $this->_user->setCurrentBlock($firstBlock->getId());
+            $this->_mappers['USER']->save($this->_user);
+        }
+        
         $this->view->user   = $this->_user;
         $this->view->survey = $this->_survey;
     }
     
     public function viewAction()
-    {	
-        if ($this->_user->hasFinishedSurvey()) {
-            $this->_redirect('index/thankyou');
-        }
-        
-        $mapper = new Application_Model_BlockMapper();
-        $blocks = $mapper->fetchBlocksFromSurvey($this->_survey);
+    {	        
+        $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
         $this->_survey->setBlocks($blocks);
-        
-        if(0 == $this->_user->getCurrentBlock()) {
-            $firstBlock = $this->_survey->getInitialBlock();
-            $this->_user->setCurrentBlock($firstBlock->getId());
-        }
                 
-        $currentBlock        = $mapper->find($this->_user->getCurrentBlock());
+        $currentBlock        = $this->_mappers['BLOCK']->find($this->_user->getCurrentBlock());
         
-        $mapper              = new Application_Model_QuestionMapper();
-        $questions           = $mapper->fetchQuestionsFromBlock($currentBlock);
+        $questions           = $this->_mappers['QUESTION']->fetchQuestionsFromBlock($currentBlock);
         $currentBlock->setQuestions($questions);
         
         $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
@@ -75,18 +82,21 @@ class IndexController extends Zend_Controller_Action
                 $this->persistUserData($form->getValues());
 
                 $currentBlock = $this->_survey->getNextBlock($this->_user->getCurrentBlock());
+
                 if(!empty($currentBlock)) {
                     
                     $this->_user->setCurrentBlock($currentBlock->getId());
-                    $mapper = new Application_Model_UserMapper();
                     
-                    $mapper->save($this->_user);
+                    $this->_mappers['USER']->save($this->_user);
                     
-                    $mapper              = new Application_Model_QuestionMapper();
-                    $questions           = $mapper->fetchQuestionsFromBlock($currentBlock);
+                    $questions           = $this->_mappers['QUESTION']->fetchQuestionsFromBlock($currentBlock);
                     $currentBlock->setQuestions($questions);
                     $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
                     
+                } else {
+                    $this->_user->setFinishDate(time());
+                    $this->_mappers['USER']->save($this->_user);
+                    $this->_redirect('index/thankyou');
                 }                 
             }
         }
@@ -110,14 +120,13 @@ class IndexController extends Zend_Controller_Action
     	$facebookConnection = new Application_Model_FB();
     	$facebookUserInformation = $facebookConnection->getProfileInformation();
     	
-        $userMapper = new Application_Model_UserMapper();
-        $user = $userMapper->findByFacebookId($facebookUserInformation['id']);
+        $user = $this->_mappers['USER']->findByFacebookId($facebookUserInformation['id']);
         
         if(empty($user)) {
             $user = new Application_Model_User($facebookUserInformation['id'], $facebookUserInformation['name']);
         } 
             	
-    	$userMapper->save($user);
+    	$this->_mappers['USER']->save($user);
 
         return $user;
     }
@@ -142,8 +151,7 @@ class IndexController extends Zend_Controller_Action
         
         $userData = new Application_Model_UserData($userId, $blockId, $data);
         
-        $userDataMapper = new Application_Model_UserDataMapper();
-        $userDataMapper->save($userData);
+        $this->_mappers['USERDATA']->save($userData);
 
         return true;
         
