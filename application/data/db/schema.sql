@@ -656,6 +656,14 @@ UPDATE `univalle_survey_information`.`questions` SET `numeric`='1', `min`='0', `
 
 
 
+CREATE TABLE `univalle_survey_information`.`admin_users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(10) NOT NULL,
+  `password` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `univalle_survey_information`.`admin_users` (`name`, `username`, `password`) VALUES ('Jorge Andres Castro', 'jcastro', md5('testcuenta1'));
 
 
 

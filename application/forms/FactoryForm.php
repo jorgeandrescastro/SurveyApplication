@@ -99,7 +99,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	   
 	   $field->setLabel(utf8_encode($question->getText()))
 	         ->setRequired($question->isRequired())
-	         ->setErrorMessages(array('isEmpty'=>'Este campo es obligatorio'));;
+	         ->setErrorMessages(array('isEmpty'=>'Este campo es obligatorio'));
 
         if($question->isNumeric()) {
             $field->addValidator('Between', false, array('min' => $question->getMin(), 'max' => $question->getMax()))
