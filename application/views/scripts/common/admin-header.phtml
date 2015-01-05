@@ -1,0 +1,23 @@
+<?php
+$loggedIn = false;
+ 
+if(Zend_Auth::getInstance()->hasIdentity()) {
+    $loggedIn = true;
+    $userAuth = Zend_Auth::getInstance()->getIdentity();
+}
+
+?>
+<nav class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">Universidad del Valle</a>
+    <?php if($loggedIn) {?>
+        <p class="navbar-text pull-right">Bienvenido <?php echo $userAuth->name; ?></p>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                 <li><a href="index">Inicio</a></li>
+                 <li><a href="gefx">GEFX</a></li>
+                 <li><a href="<?php echo Zend_Controller_Front::getInstance()->getBaseUrl() . 
+                                    "/authentication/logout"?>">Log out</a></li>
+            </ul>
+         </div>
+    <?php }?>
+</nav>

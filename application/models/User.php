@@ -55,7 +55,7 @@ class Application_Model_User
      * @param int $fbid
      * @param string $name
      */
-    public function __construct($fbid, $name)
+    public function __construct($fbid = '', $name = '')
     {
     	$this->_fbid         = $fbid;
     	$this->_name         = $name;

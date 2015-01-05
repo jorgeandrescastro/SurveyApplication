@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Facebook ID</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha de Comienzo</th>    
+            <th></th>        
+        </tr>
+    </thead>
+    <tbody>
+        <?foreach($this->users as $id => $user) { 
+            $url = $this->url(array('controller' => 'admin', 'action' => 'view', 'iid' => $user->getId()));
+        ?>
+            <tr>
+                <td><?php echo $id; ?></td>
+                <td><?php echo $user->getFbid(); ?></td>
+                <td><?php echo $user->getName(); ?></td>
+                <td><?php if($user->hasFinishedSurvey()) {?>
+                    <span class="label label-success">Finalizado</span>
+                    <?php } else { ?>
+                    <span class="label label-warning">Incompleto</span>
+                    <?php }?>                
+                </td>
+                <td><?php echo date('d-m-Y H:i',$user->getStartDate()); ?></td>
+                <td><a href="<?php echo $url; ?>">
+                        <button type="button" class="btn btn-primary btn-xs">
+                            Ver
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

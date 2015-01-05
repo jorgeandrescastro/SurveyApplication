@@ -112,8 +112,65 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
             return true;
         }
         
-        return false;
+        return false;        
+    }
+    
+    /**
+     * Gets all the users from the DB
+     * @return array
+     */
+    public function getAllUsers() 
+    {
+        $select = $this->getDbTable($this->_dbTableClassName)
+                       ->select()->order(array('finishDate DESC'));
         
+        $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
+        $users = array();
+        
+        foreach($resultSet as $row) {
+            $user = new Application_Model_User();
+            $user->setId($row['id'])
+                 ->setFbid($row['fbid'])
+                 ->setName($row['name'])
+                 ->setStartDate($row['startDate'])
+                 ->setFinishDate($row['finishDate'])
+                 ->setCurrentBlock($row['currentBlock']);
+             
+            $users[$row['id']] = $user;
+        }
+        
+        return $users;
+    }
+    
+    /**
+     * Get the counts from the user table
+     * @return array 
+     */
+    public function getUserCounts()
+    {
+        $counts = array();
+        $table = $this->getDbTable($this->_dbTableClassName);
+        
+        $select = $table->select();
+        $select->from($table,
+                array('COUNT(*) as count'));
+        
+        
+        $rows = $table->fetchRow($select);
+        foreach($rows as $row) {
+            $counts['total'] = $row;
+        }
+        
+        $select = $table->select();
+        $select->from($table, array('COUNT(*) as count'))
+               ->where('finishDate > ?', 0);
+         
+        $rows = $table->fetchRow($select);
+        foreach($rows as $row) {
+            $counts['finished'] = $row;
+        }
+        
+        return $counts;
     }
      
 }

@@ -12,9 +12,7 @@
 </head>
 <body> 
     <div class="container">
-        <nav class="navbar navbar-inverse">
-            <a class="navbar-brand" href="#">Universidad del Valle</a>
-        </nav>
+        <?php  echo $this->partial('common/admin-header.phtml'); ?>
         <div class="content">
             <?php echo $this->layout()->content ?>
         </div>

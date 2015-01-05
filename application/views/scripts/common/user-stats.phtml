@@ -1,0 +1,33 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Estadísticas</h3>
+    </div>
+    <div class="panel-body">
+        <div class="bs-example" data-example-id="list-group-badges">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="badge"><?php echo $this->stats['total']; ?></span>
+                Total Encuestas
+              </li>
+              <li class="list-group-item">
+                <span class="badge"><?php echo $this->stats['finished']; ?></span>
+                Encuestas Finalizadas
+              </li>
+              <li class="list-group-item">
+                <span class="badge"><?php echo $this->stats['incomplete']; ?></span>
+                Encuestas Incompletas
+              </li>
+            </ul>
+          </div>
+        <h5>Tasa de Finalización de la Encuesta:</h5>
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped" 
+               role="progressbar" aria-valuenow="<?php echo $this->stats['cr']; ?>" aria-valuemin="0" 
+               aria-valuemax="100" style="width: <?php echo $this->stats['cr']; ?>%">
+            <?php echo $this->stats['cr']; ?>% 
+          </div>
+        </div>
+    </div>
+</div>
+
+          
