@@ -13,8 +13,10 @@ if(Zend_Auth::getInstance()->hasIdentity()) {
         <p class="navbar-text pull-right">Bienvenido <?php echo $userAuth->name; ?></p>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                 <li><a href="index">Inicio</a></li>
-                 <li><a href="gefx">GEFX</a></li>
+                 <li><a href="<?php echo Zend_Controller_Front::getInstance()->getBaseUrl() . 
+                                    "/admin/index" ?>">Inicio</a></li>
+                 <li><a href="<?php echo Zend_Controller_Front::getInstance()->getBaseUrl() . 
+                                    "/admin/gefx" ?>">GEFX</a></li>
                  <li><a href="<?php echo Zend_Controller_Front::getInstance()->getBaseUrl() . 
                                     "/authentication/logout"?>">Log out</a></li>
             </ul>

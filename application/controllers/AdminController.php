@@ -30,6 +30,12 @@ class AdminController extends Zend_Controller_Action
     
     public function viewAction()
     {
+        $request = $this->getRequest();
+        $internalUserId = $request->getParam('iid');
         
+        $userMapper = new Application_Model_UserMapper();
+        $user = $userMapper->find($internalUserId);
+        
+        $this->view->user = $user;
     }
 }

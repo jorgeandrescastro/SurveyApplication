@@ -137,10 +137,14 @@ class Application_Model_User
     
     /**
      * Getter for the Start Date
+     * @param bool $formatted
      * @return int
      */
-    public function getStartDate()
+    public function getStartDate($formatted = false)
     {
+        if($formatted) {
+            return ($this->_startDate > 0) ? date('d-m-Y H:i:s',$this->_startDate) : '0'; 
+        }
         return $this->_startDate;
     }
     
@@ -157,10 +161,14 @@ class Application_Model_User
     
     /**
      * Getter for the Finish Date
+     * @param bool $formatted 
      * @return int
      */
-    public function getFinishDate()
+    public function getFinishDate($formatted = false)
     {
+        if($formatted) {
+            return ($this->_finishDate > 0) ? date('d-m-Y H:i:s',$this->_finishDate) : '0';
+        }
         return $this->_finishDate;
     }
     

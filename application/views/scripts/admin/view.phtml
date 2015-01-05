@@ -1,9 +1,22 @@
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">
-          <h1>Administrador <small>Resultados de la Encuesta</small></h1>
-        </div>
-        
+          <h1>Administrador <small>Resultados</small></h1>
+        </div>  
+        <p><strong>Nombre: </strong><?php echo $this->user->getName(); ?></p>
+        <p><strong>Estado de la Encuesta: </strong>
+            <?php if($this->user->hasFinishedSurvey()) {?>
+                    <span class="label label-success">Finalizado</span>
+            <?php } else { ?>
+                    <span class="label label-warning">Incompleto</span>
+            <?php }?>  
+        </p>
+        <p><strong>Fecha de Inicio de la Encuesta: </strong>
+            <?php echo $this->user->getStartDate(true); ?>
+        </p>
+        <p><strong>Fecha de Finalización de la Encuesta: </strong>
+            <?php echo $this->user->getFinishDate(true); ?>
+        </p>
     </div>
     <div class="col-md-4">
         <?php echo $this->partial('common/user-stats.phtml', array('stats' => $this->stats)); ?>
