@@ -36,6 +36,20 @@ class AdminController extends Zend_Controller_Action
         $userMapper = new Application_Model_UserMapper();
         $user = $userMapper->find($internalUserId);
         
+        $surveyMapper = new Application_Model_SurveyMapper();
+        $survey = $surveyMapper->find(Application_Model_Survey::$DEFAULT_SURVEY);
+        
+        $blockMapper = new Application_Model_BlockMapper();
+        $blocks = $blockMapper->fetchBlocksFromSurvey($survey);
+        
+        $questionMapper = new Application_Model_QuestionMapper();
+        foreach ($blocks as $block) {
+            $questions = $questionMapper->fetchQuestionsFromBlock($block);
+            $block->setQuestions($questions);
+        }
+        $survey->setBlocks($blocks);
+        
+        $this->view->survey = $survey;
         $this->view->user = $user;
     }
 }

@@ -40,7 +40,7 @@ class IndexController extends Zend_Controller_Action
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
 	    
-	    $this->_survey = $this->_mappers['SURVEY']->find(1);
+	    $this->_survey = $this->_mappers['SURVEY']->find(Application_Model_Survey::$DEFAULT_SURVEY);
 	}
 
     public function indexAction()

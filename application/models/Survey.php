@@ -31,6 +31,12 @@ class Application_Model_Survey
      */
     protected $_blocks;
     
+    /**
+     * ID of the default survey
+     * @var int
+     */
+    public static $DEFAULT_SURVEY = 1;
+    
     public function __construct(array $options = null) 
     {}
     
@@ -71,7 +77,7 @@ class Application_Model_Survey
      */
     public function getName()
     {
-        return $this->_name;
+        return utf8_encode($this->_name);
     }
     
     /**
@@ -91,7 +97,7 @@ class Application_Model_Survey
      */
     public function getDescription()
     {
-        return $this->_description;
+        return utf8_encode($this->_description);
     }
     
     /**

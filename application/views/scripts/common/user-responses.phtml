@@ -1,0 +1,25 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <?php foreach ($this->survey->getBlocks() as $block) {?>        
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading<?php echo $block->getId();?>">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                    href="#collapse<?php echo $block->getId();?>" 
+                    aria-expanded="false" 
+                    aria-controls="collapse<?php echo $block->getId();?>">
+                  <?php echo $block->getName(); ?>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse<?php echo $block->getId();?>" 
+                 class="panel-collapse collapse" role="tabpanel" aria-expanded="false"
+                 aria-labelledby="heading<?php echo $block->getId();?>">
+              <div class="panel-body">
+                <?php foreach ($block->getQuestions() as $question) {?>
+                    <p><strong><?php echo $question->getText();?> </strong>PLACEHOLDER</p>
+                <?php } ?>
+              </div>
+            </div>
+        </div>          
+    <?php } ?>
+</div>

@@ -66,7 +66,7 @@ class Application_Model_Block
       */
      public function getName() 
      {
-         return $this->_name;
+         return utf8_encode($this->_name);
      }
      
      /**

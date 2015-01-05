@@ -97,7 +97,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	       break;
 	   }   
 	   
-	   $field->setLabel(utf8_encode($question->getText()))
+	   $field->setLabel($question->getText())
 	         ->setRequired($question->isRequired())
 	         ->setErrorMessages(array('isEmpty'=>'Este campo es obligatorio'));
 

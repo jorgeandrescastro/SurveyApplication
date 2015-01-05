@@ -106,7 +106,7 @@ class Application_Model_Question
      */
     public function getText()
     {
-        return $this->_text;
+        return utf8_encode($this->_text);
     }
     
     /**
