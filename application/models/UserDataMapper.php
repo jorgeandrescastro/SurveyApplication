@@ -38,4 +38,28 @@ class Application_Model_UserDataMapper extends Application_Model_AbstractMapper
         
     }
     
+    /**
+     * Fetches the user data of a user
+     * @param Application_Model_User $user
+     * @return array 
+     */
+    public function getDataFromUser(Application_Model_User $user) 
+    {
+        $select = $this->getDbTable($this->_dbTableClassName)
+                        ->select()->where('user_id = ?', $user->getId());
+        
+        $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
+        $blockResponses = array();
+        
+        foreach($resultSet as $row) {
+            $blockResponse = new Application_Model_UserData($row['user_id'], 
+                                                            $row['block_id'],
+                                                            unserialize($row['results']));
+             
+            $blockResponses[$row['block_id']] = $blockResponse;
+        }
+        
+        return $blockResponses;
+    }
+    
 }

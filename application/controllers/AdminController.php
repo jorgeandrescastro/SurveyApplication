@@ -49,7 +49,11 @@ class AdminController extends Zend_Controller_Action
         }
         $survey->setBlocks($blocks);
         
-        $this->view->survey = $survey;
+        $userDataMapper = new Application_Model_UserDataMapper();
+        $userData = $userDataMapper->getDataFromUser($user);
+        
         $this->view->user = $user;
+        $this->view->survey = $survey;
+        $this->view->userData = $userData;
     }
 }

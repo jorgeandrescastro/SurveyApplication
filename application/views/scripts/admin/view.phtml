@@ -17,7 +17,8 @@
         <p><strong>Fecha de Finalización de la Encuesta: </strong>
             <?php echo $this->user->getFinishDate(true); ?>
         </p>
-        <?php echo $this->partial('common/user-responses.phtml', array('survey' => $this->survey)); ?>
+        <?php echo $this->partial('common/user-responses.phtml', array('survey' => $this->survey, 
+                                                                       'userData' => $this->userData)); ?>
     </div>
     <div class="col-md-4">
         <?php echo $this->partial('common/user-stats.phtml', array('stats' => $this->stats)); ?>
