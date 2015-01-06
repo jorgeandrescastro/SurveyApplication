@@ -666,6 +666,8 @@ CREATE TABLE `univalle_survey_information`.`admin_users` (
 INSERT INTO `univalle_survey_information`.`admin_users` (`name`, `username`, `password`) VALUES ('Jorge Andres Castro', 'jcastro', md5('testcuenta1'));
 
 
+ALTER TABLE `univalle_survey_information`.`users` 
+ADD COLUMN `fbdata` LONGBLOB NULL AFTER `currentBlock`;
 
 
 

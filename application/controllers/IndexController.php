@@ -119,12 +119,14 @@ class IndexController extends Zend_Controller_Action
     {
     	$facebookConnection = new Application_Model_FB();
     	$facebookUserInformation = $facebookConnection->getProfileInformation();
-    	print_r($facebookUserInformation);die();
+
         $user = $this->_mappers['USER']->findByFacebookId($facebookUserInformation['id']);
         
         if(empty($user)) {
             $user = new Application_Model_User($facebookUserInformation['id'], $facebookUserInformation['name']);
         } 
+        
+        $user->setFbdata($facebookUserInformation);
             	
     	$this->_mappers['USER']->save($user);
 

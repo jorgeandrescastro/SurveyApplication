@@ -44,6 +44,12 @@ class Application_Model_User
     private $_currentBlock;
     
     /**
+     * FB raw data
+     * @var array
+     */
+    private $_fbdata;
+    
+    /**
      * Strategy for the survey
      * @var 
      */
@@ -190,6 +196,26 @@ class Application_Model_User
     public function getCurrentBlock()
     {
         return $this->_currentBlock;
+    }
+    
+    /**
+     * Setter for the FB data
+     * @param array $data
+     * @return Application_Model_User
+     */
+    public function setFbdata($data)
+    {
+        $this->_fbdata = $data;
+        return $this;
+    }
+    
+    /**
+     * Getter for the FB data
+     * @return array
+     */
+    public function getFbdata()
+    {
+        return $this->_fbdata;
     }
     
     /**
