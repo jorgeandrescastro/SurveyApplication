@@ -105,6 +105,12 @@ class Application_Model_FB
     public function getProfileInformation()
     {
         $me = $this->authenticate();
+        print_r($me->getProperty('birthday'));
+        print_r($me->getProperty('education'));
+        print_r($me->getProperty('gender'));
+        print_r($me->getProperty('hometown'));
+        print_r($me->getProperty('work'));
+        die();
         
         $userInfo = array('id' => $me->getProperty('id'),
                           'name' => $me->getProperty('name'),
