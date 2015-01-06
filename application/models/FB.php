@@ -108,9 +108,7 @@ class Application_Model_FB
         $hometown = $me->getProperty('hometown');
         print_r($hometown);
         print_r('/');
-        print_r($hometown['name']);
-        print_r('/');
-        print_r($hometown->getProperty('name'));
+        print_r($hometown->getName());
         print_r("-----------");
         print_r($me->getProperty('work'));
         die();
