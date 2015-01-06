@@ -50,6 +50,14 @@ class Application_Model_FB
     protected $_apiNamespace;
     
     /**
+     * FB permissions to be asked to the user
+     * @var array
+     */
+    protected $_permissions = array('public_profile', 'user_about_me', 
+                                    'user_education_history', 'user_hometown',
+                                    'user_work_history', 'user_birthday');   
+    
+    /**
      * Constructor of the FB class
      * @return Application_Model_FB
      * 
@@ -89,7 +97,7 @@ class Application_Model_FB
         	}
         } else {
             $helper = new FacebookRedirectLoginHelper("https://apps.facebook.com/$this->_apiNamespace/");
-            $auth_url = $helper->getLoginUrl(array('email', 'publish_actions'));
+            $auth_url = $helper->getLoginUrl($this->_permissions);
             echo "<script>window.top.location.href='".$auth_url."'</script>";
         }
     }
@@ -97,6 +105,7 @@ class Application_Model_FB
     public function getProfileInformation()
     {
         $me = $this->authenticate();
+        print_r($me);die();
         
         $userInfo = array('id' => $me->getProperty('id'),
                           'name' => $me->getProperty('name'),
