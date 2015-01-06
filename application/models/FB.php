@@ -104,13 +104,9 @@ class Application_Model_FB
     
     public function getProfileInformation()
     {
-        $me = $this->authenticate();      
-        $x = $me['hometown'];
-        print_r($x);
-        print_r("////");
-        print_r($x->name);
-        print_r("////");
-        print_r($x->getName());
+        $me = $this->authenticate();
+              
+        $hometown = $me['hometown'];
         
         $date1=date_create($me['birthday']);
         $date2=date_create();
@@ -121,6 +117,7 @@ class Application_Model_FB
                           'firstName' => $me['first_name'],
                           'age' => $diff->y,
                           'gender' => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',
+                          'hometown' => $hometown->name,
         );
         
         return $userInfo;
