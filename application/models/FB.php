@@ -108,7 +108,7 @@ class Application_Model_FB
         $x = $me['hometown'];
         print_r($x);
         print_r("////");
-        print_r($x->getProperty('name'));
+        print_r($x->name);
         print_r("////");
         print_r($x->getName());
         
