@@ -106,7 +106,7 @@ class Application_Model_FB
     {
         $me = $this->authenticate();
         $hometown = $me->getProperty('hometown');
-        print_r($hometown->getProperty('backingData'));
+        print_r($hometown->getProperty('name'));
         print_r("-----------");
         print_r($me->getProperty('work'));
         die();
