@@ -105,7 +105,7 @@ class Application_Model_FB
     public function getProfileInformation()
     {
         $me = $this->authenticate();
-        $hometown = $me->getProperty('hometown');
+        $hometown = $me->getPropertyAsArray('hometown');
         print_r($hometown);
         print_r('/');
         print_r($hometown->getName());
