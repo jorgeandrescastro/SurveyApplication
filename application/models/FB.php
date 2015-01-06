@@ -90,7 +90,6 @@ class Application_Model_FB
                 $request = new FacebookRequest($session, 'GET', '/me');
                 $response = $request->execute();
                 $me = $response->getGraphObject()->asArray();
-                print_r($me);die();
                 
                 return $me;
             }catch(FacebookRequestException $e) {
@@ -105,26 +104,23 @@ class Application_Model_FB
     
     public function getProfileInformation()
     {
-        $me = $this->authenticate();
-        $hometown = $me->getPropertyAsArray('hometown');
-        print_r($hometown);
-        print_r('/');
-        print_r($hometown->getName());
-        print_r("-----------");
-        print_r($me->getProperty('work'));
-        die();
+        $me = $this->authenticate();      
+        $x = $me['hometown'];
+        print_r($x);
+        print_r("////");
+        print_r($x->getProperty('name'));
+        print_r("////");
+        print_r($x->getName());
         
-        
-        $date1=date_create($me->getProperty('birthday'));
+        $date1=date_create($me['birthday']);
         $date2=date_create();
         $diff=date_diff($date2,$date1);        
         
-        $userInfo = array('id' => $me->getProperty('id'),
-                          'name' => $me->getProperty('name'),
-                          'firstName' => $me->getProperty('first_name'),
+        $userInfo = array('id' => $me['id'],
+                          'name' => $me['name'],
+                          'firstName' => $me['first_name'],
                           'age' => $diff->y,
-                          'gender' => ($me->getProperty('first_name') == 'male') ?
-                                        'Masculino' : 'Femenino',
+                          'gender' => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',
         );
         
         return $userInfo;
