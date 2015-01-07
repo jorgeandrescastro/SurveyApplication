@@ -117,7 +117,8 @@ class Application_Model_FB
                           2 => $hometown->name,
                           3 => $me['first_name'],
                           4 => $diff->y,
-                          6 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',                          
+                          6 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',  
+                          7 => 'test',                        
         );
         
         return $userInfo;
