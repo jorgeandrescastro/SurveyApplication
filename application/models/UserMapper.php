@@ -37,7 +37,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
              ->setFinishDate($row->finishDate)
              ->setCurrentBlock($row->currentBlock)
              ->setFbdata(unserialize($row->fbdata));
-        
+
         return $user;
     }
     

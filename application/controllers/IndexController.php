@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action
 	        $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
-// 	        $this->_user = $this->_mappers['USER']->find(1);
+// 	        $this->_user = $this->_mappers['USER']->find(7);
 	    } else {
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
@@ -66,13 +66,13 @@ class IndexController extends Zend_Controller_Action
     {	        
         $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
         $this->_survey->setBlocks($blocks);
-                
+        
         $currentBlock        = $this->_mappers['BLOCK']->find($this->_user->getCurrentBlock());
         
         $questions           = $this->_mappers['QUESTION']->fetchQuestionsFromBlock($currentBlock);
         $currentBlock->setQuestions($questions);
         
-        $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
+        $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user);
         
         $request = $this->getRequest();
         if($request->isPost()) {
@@ -91,7 +91,7 @@ class IndexController extends Zend_Controller_Action
                     
                     $questions           = $this->_mappers['QUESTION']->fetchQuestionsFromBlock($currentBlock);
                     $currentBlock->setQuestions($questions);
-                    $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user->getId());
+                    $form 				 = new Application_Form_FactoryForm(null, $currentBlock, $this->_user);
                     
                 } else {
                     $this->_user->setFinishDate(time());
@@ -123,7 +123,7 @@ class IndexController extends Zend_Controller_Action
         $user = $this->_mappers['USER']->findByFacebookId($facebookUserInformation['id']);
         
         if(empty($user)) {
-            $user = new Application_Model_User($facebookUserInformation['id'], $facebookUserInformation['name']);
+            $user = new Application_Model_User($facebookUserInformation[0], $facebookUserInformation[1]);
         } 
         
         $user->setFbdata($facebookUserInformation);

@@ -7,13 +7,13 @@
  */
 class Application_Form_FactoryForm extends Zend_Form
 {
-	public function __construct($options = null, Application_Model_Block $block, $uid)
+	public function __construct($options = null, Application_Model_Block $block, Application_Model_User $user)
 	{
 		parent::__construct($options);
 		
 		$this->setName('surveyBlock_' . $block->getId());
 		$this->setMethod('POST');
-		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . "/index/view/iid/$uid");
+		$this->setAction(Zend_Controller_Front::getInstance()->getBaseUrl() . "/index/view/iid/" . $user->getId());
 		
 		$elements = array();
 		
@@ -22,7 +22,7 @@ class Application_Form_FactoryForm extends Zend_Form
 		$elements[] = $field;
 		
 		$field = new Zend_Form_Element_Hidden('user');
-		$field->setValue($uid);
+		$field->setValue($user->getId());
 		$elements[] = $field;
 		
 		foreach ($block->getQuestions() as $question)
