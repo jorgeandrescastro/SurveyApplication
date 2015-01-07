@@ -119,7 +119,6 @@ class Application_Model_FB
                           4 => $diff->y,
                           6 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',                          
         );
-        print_r($userInfo);die();
         
         return $userInfo;
     }
