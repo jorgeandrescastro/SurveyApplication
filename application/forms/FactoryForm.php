@@ -25,9 +25,11 @@ class Application_Form_FactoryForm extends Zend_Form
 		$field->setValue($user->getId());
 		$elements[] = $field;
 		
+		$prepopulatedFields = $user->getFbdata();
+		
 		foreach ($block->getQuestions() as $question)
 		{
-            $field = Application_Form_FactoryForm::createField($question);
+            $field = Application_Form_FactoryForm::createField($question, $prepopulatedFields);
 			
 		    $elements[] = $field;
 		}
@@ -41,7 +43,7 @@ class Application_Form_FactoryForm extends Zend_Form
 		$this->addElements($elements);
 	}
 	
-	public static function createField(Application_Model_Question $question)
+	public static function createField(Application_Model_Question $question, $prepopulatedFields)
 	{
 	   switch($question->getType())
 	   {
@@ -96,6 +98,10 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	       ));
 	       	       break;
 	   }   
+	   
+	   if(isset($prepopulatedFields[$question->getId()])) {
+	       $field->setValue($prepopulatedFields[$question->getId()]);
+	   }
 	   
 	   $field->setLabel($question->getText())
 	         ->setRequired($question->isRequired())
