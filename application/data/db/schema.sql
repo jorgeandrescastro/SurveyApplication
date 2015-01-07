@@ -670,6 +670,11 @@ ALTER TABLE `univalle_survey_information`.`users`
 ADD COLUMN `fbdata` LONGBLOB NULL AFTER `currentBlock`;
 
 
+ALTER TABLE `univalle_survey_information`.`questions` 
+ADD COLUMN `has_dependent` TINYINT(4) NULL DEFAULT 0 AFTER `max`,
+ADD COLUMN `depends_of` INT NULL DEFAULT NULL AFTER `has_dependent`;
+
+
 
 
 

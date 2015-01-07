@@ -65,6 +65,18 @@ class Application_Model_Question
      */
     protected $_maxValue;
     
+    /**
+     * Does the question have dependents?
+     * @var bool
+     */
+    protected $_hasDependent;
+    
+    /**
+     * Question from which depends on
+     * @var int
+     */
+    protected $_dependsOf;
+    
     public function __construct(array $options = null)
     {
     }
@@ -227,5 +239,54 @@ class Application_Model_Question
     public function getMin()
     {
         return $this->_minValue;
+    }
+    
+    /**
+     * Setter for hasDependent
+     * @param bool $hasDependent
+     * @return Application_Model_Question
+     */
+    public function setHasDependent($hasDependent)
+    {
+        $this->_hasDependent = $hasDependent;
+        return $this;
+    }
+    
+    /**
+     * Does the question has dependents?
+     * @return boolean
+     */
+    public function hasDependent()
+    {
+        return (1 == $this->_hasDependent);
+    }        
+    
+    /**
+     * Setter for dependsOf
+     * @param int $dependsOf
+     * @return Application_Model_Question
+     */
+    public function setDependsOf($dependsOf) 
+    {
+        $this->_dependsOf = $dependsOf;
+        return $this;
+    }
+    
+    /**
+     * Getter for dependsOf
+     * @return int
+     */
+    public function getDependsOf()
+    {
+        return $this->_dependsOf;
+    }
+    
+    /**
+     * Checks if the question should be hidden from the form
+     * @return boolean
+     */
+    public function isHidden()
+    {
+        return !is_null($this->_dependsOf);
     }
 }

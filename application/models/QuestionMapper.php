@@ -38,7 +38,9 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
                  ->setRequired($row->required)
                  ->setNumeric($row->numeric)
                  ->setMax($row->max)
-                 ->setMin($row->min);
+                 ->setMin($row->min)
+                 ->setHasDependent($row->has_dependent)
+                 ->setDependsOf($row->depends_of);
         
         return $question;
     }
@@ -64,7 +66,9 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
                      ->setRequired($row['required'])
                      ->setNumeric($row['numeric'])
                      ->setMax($row['max'])
-                     ->setMin($row['min']);
+                     ->setMin($row['min'])
+                     ->setHasDependent($row['has_dependent'])
+                     ->setDependsOf($row['depends_of']);
             
             $answers = $this->getAnswersFromQuestion($question);
              
