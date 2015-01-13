@@ -53,7 +53,8 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
     public function fetchQuestionsFromBlock(Application_Model_Block $block)
     {
         $select = $this->getDbTable($this->_dbTableClassName)
-                        ->select()->where('block_id = ?', $block->getId());
+                       ->select()->where('block_id = ?', $block->getId())
+                       ->order(array('weight ASC'));
         
         $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
         $questions = array();

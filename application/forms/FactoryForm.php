@@ -45,6 +45,11 @@ class Application_Form_FactoryForm extends Zend_Form
 	
 	public static function createField(Application_Model_Question $question, $prepopulatedFields)
 	{
+		 $addClass = '';
+		 if($question->isHidden()) {
+		 	 $addClass = 'hidden dependent';
+		 }
+
 	   switch($question->getType())
 	   {
 	       case Application_Model_Question::QUESTION_TEXT:
@@ -55,21 +60,23 @@ class Application_Form_FactoryForm extends Zend_Form
 	                   'Errors',
 	                   array(array('data'=>'HtmlTag')),
 	                   array('Label', array('tag' => 'div', 'align' => 'left')),
-	                   array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => 'form-group'))
+	                   array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "form-group $addClass"))
 	           ));
 	           $field->setAttrib('class', 'form-control');
 	           
 	       	   break;
 	       case Application_Model_Question::QUESTION_SELECT:
+	       		 $answers = $question->getAnswers();
+	       		 array_unshift($answers, '');
 	       	   $field = new Zend_Form_Element_Select('question_' . $question->getId());
-	       	   $field->setMultiOptions($question->getAnswers());
+	       	   $field->setMultiOptions($answers);
 	       	   $field->setDecorators(array(
 	       	           'ViewHelper',
 	       	           'Description',
 	       	           'Errors',
 	       	           array(array('data'=>'HtmlTag')),
 	       	           array('Label', array('tag' => 'div', 'align' => 'left')),
-	       	           array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => 'form-group'))
+	       	           array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "form-group $addClass"))
 	       	   ));
 	       	   $field->setAttrib('class', 'form-control');
 	       	   break;
@@ -82,7 +89,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	                   'Errors',
 	                   array(array('data'=>'HtmlTag'), array('tag' => 'div', 'class' => 'checkbox')),
 	                   array('Label', array('tag' => 'div', 'align' => 'left', 'class' => 'checkbox')),
-	                   array(array('row'=>'HtmlTag'),array('tag'=>'div'))
+	                   array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "$addClass"))
 	           ));
 	       	   break;
 	       	case Application_Model_Question::QUESTION_RADIO_OPTION:
@@ -94,7 +101,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	               'Errors',
 	       	               array(array('data'=>'HtmlTag'), array('tag' => 'div', 'class' => 'radio')),
 	       	               array('Label', array('tag' => 'div', 'align' => 'left', 'class' => 'radio')),
-	       	               array(array('row'=>'HtmlTag'),array('tag'=>'div'))
+	       	               array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "$addClass"))
 	       	       ));
 	       	       break;
 	   }   

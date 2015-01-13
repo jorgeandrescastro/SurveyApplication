@@ -674,6 +674,7 @@ ALTER TABLE `univalle_survey_information`.`questions`
 ADD COLUMN `has_dependent` TINYINT(4) NULL DEFAULT 0 AFTER `max`,
 ADD COLUMN `depends_of` INT NULL DEFAULT NULL AFTER `has_dependent`;
 
+UPDATE `univalle_survey_information`.`questions` SET `has_dependent`='1' WHERE `id`='17';
 
 
 
