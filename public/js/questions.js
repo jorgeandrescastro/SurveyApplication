@@ -1,5 +1,6 @@
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[numeric]').numeric();
 })
 
 $(document).ready(function() {

@@ -67,7 +67,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	   break;
 	       case Application_Model_Question::QUESTION_SELECT:
 	       		 $answers = $question->getAnswers();
-	       		 array_unshift($answers, '');
+	       		 array_unshift($answers, array('' => ''));
 	       	   $field = new Zend_Form_Element_Select('question_' . $question->getId());
 	       	   $field->setMultiOptions($answers);
 	       	   $field->setDecorators(array(
@@ -120,11 +120,12 @@ class Application_Form_FactoryForm extends Zend_Form
 	         ->setRequired($question->isRequired())
 	         ->setErrorMessages(array('isEmpty'=>'Este campo es obligatorio'));
 
-        if($question->isNumeric()) {
-            $field->addValidator('Between', false, array('min' => $question->getMin(), 'max' => $question->getMax()))
-                  ->setErrorMessages(array('Between'=>'El valor debe estar entre ' .
-                                                       $question->getMin() . ' y ' . $question->getMax()));
-        }	   
+      if($question->isNumeric()) {
+          $field->addValidator('Between', true, array('min' => $question->getMin(), 'max' => $question->getMax()))
+                ->setErrorMessages(array('Between'=>'El valor debe estar entre ' .
+                                                     $question->getMin() . ' y ' . $question->getMax()));
+          $field->setAttrib('numeric', "numeric");
+      }	   
 
 	   return $field; 
 	}
