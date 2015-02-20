@@ -112,11 +112,11 @@ class Application_Model_FB
         $date2=date_create();
         $diff=date_diff($date2,$date1);        
         
-        $userInfo = array(0 => $me['id'],
-                          1 => $me['name'],
-                          2 => $hometown->name,
-                          4 => $diff->y,
-                          6 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',                        
+        $userInfo = array(1 => $me['id'],
+                          3 => $me['name'],
+                          4 => $hometown->name,
+                          6 => $me['birthday'],
+                          7 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',                        
         );
         
         return $userInfo;

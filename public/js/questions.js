@@ -1,3 +1,7 @@
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 $(document).ready(function() {
   if($("#question_17").length ) {
     $("#question_17").change(function() {

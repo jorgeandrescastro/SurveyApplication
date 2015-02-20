@@ -34,6 +34,7 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
         
         $question->setId($row->id)
                  ->setText($row->text)
+                 ->setDescription($row->description)
                  ->setType($row->type)
                  ->setRequired($row->required)
                  ->setNumeric($row->numeric)
@@ -63,6 +64,7 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
             $question = new Application_Model_Question();
             $question->setId($row['id'])
                      ->setText($row['text'])
+                     ->setDescription($row['description'])
                      ->setType($row['type'])
                      ->setRequired($row['required'])
                      ->setNumeric($row['numeric'])

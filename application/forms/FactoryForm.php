@@ -109,6 +109,12 @@ class Application_Form_FactoryForm extends Zend_Form
 	   if(isset($prepopulatedFields[$question->getId()])) {
 	       $field->setValue($prepopulatedFields[$question->getId()]);
 	   }
+
+	   if($question->getDescription() != '') {
+	   		$field->setAttrib('data-toggle', "tooltip");
+	   		$field->setAttrib('data-placement', "top");
+	   		$field->setAttrib('title', $question->getDescription());
+	   }
 	   
 	   $field->setLabel($question->getText())
 	         ->setRequired($question->isRequired())

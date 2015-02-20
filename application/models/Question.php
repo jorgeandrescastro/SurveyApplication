@@ -28,6 +28,12 @@ class Application_Model_Question
      * @var string
      */
     protected $_text;
+
+    /**
+     * Description of the question
+     * @var string
+     */
+    protected $_description;
     
     /**
      * Type of question
@@ -119,6 +125,26 @@ class Application_Model_Question
     public function getText()
     {
         return utf8_encode($this->_text);
+    }
+
+    /**
+     * Setter for the Description
+     * @param string $text
+     * @return Application_Model_Question
+     */
+    public function setDescription($description)
+    {
+        $this->_description = $description;
+        return $this;
+    }
+    
+    /**
+     * Getter for the description
+     * @return string
+     */
+    public function getDescription()
+    {
+        return utf8_encode($this->_description);
     }
     
     /**
