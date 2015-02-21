@@ -20,7 +20,16 @@ $(document).ready(function() {
         $(".dependent17").each(function (index){
           $(this).addClass('hidden');
           $('.dependent17 :radio').prop('checked', false);
+          $(".dependent17 :input").val('');
         });
+        $(".dependent20").each(function (index){
+          $(".dependent20 :input").val('');
+          $(this).addClass('hidden');
+        }); 
+        $(".dependent23").each(function (index){
+          $(".dependent23 :input").val('');
+          $(this).addClass('hidden');
+        }); 
       }
 
     });
@@ -73,7 +82,22 @@ $(document).ready(function() {
       $(".dependent26").each(function (index){
         $(".dependent26 :input").val('');
         $(this).addClass('hidden');
+        $('.dependent26 :radio').prop('checked', false);
+        $('.dependent26 :checkbox').prop('checked', false);
       }); 
+      $(".dependent33").each(function (index){
+        $(this).addClass('hidden');
+        $('.dependent33 :radio').prop('checked', false);
+        $(".dependent33 :input").val('');
+      });
+      $(".dependent41").each(function (index){
+        $(".dependent41 :input").val('');
+        $(this).addClass('hidden');
+      });
+      $(".dependent44").each(function (index){
+        $(".dependent44 :input").val('');
+        $(this).addClass('hidden');
+      });
     } 
   });
 
@@ -94,6 +118,15 @@ $(document).ready(function() {
         $(".dependent33").each(function (index){
           $(this).addClass('hidden');
           $('.dependent33 :radio').prop('checked', false);
+          $(".dependent33 :input").val('');
+        });
+        $(".dependent41").each(function (index){
+          $(".dependent41 :input").val('');
+          $(this).addClass('hidden');
+        });
+        $(".dependent44").each(function (index){
+          $(".dependent44 :input").val('');
+          $(this).addClass('hidden');
         });
       }
 
