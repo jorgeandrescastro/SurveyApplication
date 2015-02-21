@@ -15,7 +15,7 @@ class Application_Model_Question
     const QUESTION_RADIO_OPTION = 2;
     const QUESTION_CHECK_BOX = 3;
     const QUESTION_SELECT = 4;
-    
+    const QUESTION_TEXT_AREA = 5;
     
     /**
      * Id of the question

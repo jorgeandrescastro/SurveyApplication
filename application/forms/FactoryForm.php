@@ -47,7 +47,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	{
 		 $addClass = '';
 		 if($question->isHidden()) {
-		 	 $addClass = 'hidden dependent';
+		 	 $addClass = 'hidden dependent' . $question->getDependsOf();
 		 }
 
 	   switch($question->getType())
@@ -104,6 +104,19 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	               array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "$addClass"))
 	       	       ));
 	       	       break;
+          case Application_Model_Question::QUESTION_TEXT_AREA:
+                 $field = new Zend_Form_Element_Textarea('question_' . $question->getId());
+                 $field->setAttrib('cols', 50)
+                       ->setAttrib('rows', 3);
+                 $field->setDecorators(array(
+                         'ViewHelper',
+                         'Description',
+                         'Errors',
+                         array(array('data'=>'HtmlTag'), array('tag' => 'div', 'class' => 'radio')),
+                         array('Label', array('tag' => 'div', 'align' => 'left', 'class' => 'radio')),
+                         array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "$addClass"))
+                 ));
+                 break;
 	   }   
 	   
 	   if(isset($prepopulatedFields[$question->getId()])) {
