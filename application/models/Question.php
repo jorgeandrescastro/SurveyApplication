@@ -82,6 +82,12 @@ class Application_Model_Question
      * @var int
      */
     protected $_dependsOf;
+
+    /**
+     * Is the question editable?
+     * @var int
+     */
+    protected $_editable;
     
     public function __construct(array $options = null)
     {
@@ -314,5 +320,25 @@ class Application_Model_Question
     public function isHidden()
     {
         return !is_null($this->_dependsOf);
+    }
+
+    /**
+     * Setter for editable
+     * @param int $editable
+     * @return Application_Model_Question
+     */
+    public function setEditable($editable)
+    {
+        $this->_editable = $editable;
+        return $this;
+    }
+    
+    /**
+     * Returns if the question is editable
+     * @return boolean
+     */
+    public function isEditable()
+    {
+        return $this->_editable;
     }
 }

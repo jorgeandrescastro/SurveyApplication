@@ -41,7 +41,8 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
                  ->setMax($row->max)
                  ->setMin($row->min)
                  ->setHasDependent($row->has_dependent)
-                 ->setDependsOf($row->depends_of);
+                 ->setDependsOf($row->depends_of)
+                 ->setEditable($row->editable);
         
         return $question;
     }
@@ -71,7 +72,8 @@ class Application_Model_QuestionMapper extends Application_Model_AbstractMapper
                      ->setMax($row['max'])
                      ->setMin($row['min'])
                      ->setHasDependent($row['has_dependent'])
-                     ->setDependsOf($row['depends_of']);
+                     ->setDependsOf($row['depends_of'])
+                     ->setEditable($row['editable']);
             
             $answers = $this->getAnswersFromQuestion($question);
              

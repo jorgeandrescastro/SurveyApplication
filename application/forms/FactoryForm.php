@@ -26,7 +26,7 @@ class Application_Form_FactoryForm extends Zend_Form
 		$elements[] = $field;
 		
 		$prepopulatedFields = $user->getFbdata();
-		
+
 		foreach ($block->getQuestions() as $question)
 		{
             $field = Application_Form_FactoryForm::createField($question, $prepopulatedFields);
@@ -122,6 +122,10 @@ class Application_Form_FactoryForm extends Zend_Form
 	   if(isset($prepopulatedFields[$question->getId()])) {
 	       $field->setValue($prepopulatedFields[$question->getId()]);
 	   }
+
+     if(!$question->isEditable()) {
+        $field->setAttrib('disabled', 'disabled');
+     }
 
 	   if($question->getDescription() != '') {
 	   		$field->setAttrib('data-toggle', "tooltip");
