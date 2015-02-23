@@ -107,6 +107,7 @@ class Application_Model_FB
         $me = $this->authenticate();
               
         $hometown = $me['hometown'];
+        print_r($me);die();
         
         $date1=date_create($me['birthday']);
         $date2=date_create();
