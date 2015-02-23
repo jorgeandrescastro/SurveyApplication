@@ -124,7 +124,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	   }
 
      if(!$question->isEditable()) {
-        $field->setAttrib('disabled', 'disabled');
+        $field->setAttrib('readonly', 'readonly');
      }
 
 	   if($question->getDescription() != '') {
