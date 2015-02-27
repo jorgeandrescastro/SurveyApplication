@@ -166,5 +166,23 @@ $(document).ready(function() {
       }); 
     } 
   });
+
+
+
+  if($("#question_11").length ) {
+    $("#question_11").unbind('change');
+    $("#question_11").change(function() {
+      var val = $("#question_11").val();
+      $('#select-question11').after(val);
+
+    });
+  }
+
+  $("#surveyBlock_1").submit(function( event ) {
+    // var $input = $(this).find("select[name=question_11]");
+    // $input.val("You can buy me love");
+    // $('#question_57').val("VAmos A ver");
+    // console.log("life is a song");
+  });
       
 });

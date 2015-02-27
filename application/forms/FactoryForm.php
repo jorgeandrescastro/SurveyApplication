@@ -74,7 +74,7 @@ class Application_Form_FactoryForm extends Zend_Form
 	       	           'ViewHelper',
 	       	           'Description',
 	       	           'Errors',
-	       	           array(array('data'=>'HtmlTag')),
+	       	           array(array('data'=>'HtmlTag'), array('tag' => 'div', 'id' => 'select-question' . $question->getId())),
 	       	           array('Label', array('tag' => 'div', 'align' => 'left')),
 	       	           array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "form-group $addClass"))
 	       	   ));
@@ -117,6 +117,17 @@ class Application_Form_FactoryForm extends Zend_Form
                          array(array('row'=>'HtmlTag'),array('tag'=>'div', 'class' => "$addClass"))
                  ));
                  break;
+          case Application_Model_Question::QUESTION_HIDDEN:
+            $field = new Zend_Form_Element_Hidden('question_' . $question->getId());
+            $field->setDecorators(array(
+                   'ViewHelper',
+                   'Description',
+                   'Errors',
+                   array(array('data'=>'HtmlTag')),
+                   array('Label', array('tag' => 'div', 'align' => 'left', 'class' => 'hide')),
+                   array(array('row'=>'HtmlTag'),array('tag'=>'div'))
+            ));
+            break;
 	   }   
 	   
 	   if(isset($prepopulatedFields[$question->getId()])) {

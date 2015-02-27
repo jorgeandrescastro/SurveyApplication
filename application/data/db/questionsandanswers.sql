@@ -64,7 +64,7 @@ INSERT INTO `questions` VALUES
 (53,'¿Alguna vez ha actuado como intermediario entre una vacante y una persona que se encuentre buscando empleo?',3,5,1,0,0,NULL,NULL,0,NULL,NULL),
 (54,'Cuando usted recibe información por un medio virtual (correo electrónico, portal de empleos, redes sociales, etc) sobre una vacante laboral:',2,5,2,0,0,NULL,NULL,0,NULL,NULL),
 (55,'Por favor escriba tres las principales razones que lo(a) motivan a transmitir información sobre vacantes de empleo',5,5,3,0,0,NULL,NULL,0,NULL,NULL),
-
+(57,'Títulos obtenidos en la Universidad del Valle',6,1,13,0,0,NULL,NULL,0,NULL,NULL,1),
 
 
 INSERT INTO `answers` (`text`,`question_id`) VALUES 
