@@ -173,8 +173,13 @@ $(document).ready(function() {
     $("#question_11").unbind('change');
     $("#question_11").change(function() {
       var val = $("#question_11").val();
-      $('#select-question11').after(val);
 
+      if($("#careers-table").length == 0) {
+        $('#select-question11').after('<table id="careers-table" class="table table-bordered"><tr><th>Carrera</th><tr/></table>');
+      }
+      $('#careers-table tr:last').after('<tr><td>'+val+'</td></tr>');
+      var careers = $('#question_57').val();
+      $('#question_57').val(careers + ',' + val);
     });
   }
 
