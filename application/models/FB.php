@@ -55,7 +55,7 @@ class Application_Model_FB
      */
     protected $_permissions = array('public_profile', 'user_about_me', 
                                     'user_education_history', 'user_hometown',
-                                    'user_work_history', 'user_birthday');   
+                                    'user_work_history', 'user_birthday', 'invitable_friends');   
     
     /**
      * Constructor of the FB class
@@ -105,6 +105,7 @@ class Application_Model_FB
     public function getProfileInformation()
     {
         $me = $this->authenticate();
+        print_r($me);die();
               
         $hometown = $me['hometown'];
         
