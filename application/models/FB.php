@@ -127,7 +127,6 @@ class Application_Model_FB
                           7 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',
                           16 => $work_info
         );
-        print_r($userInfo);die();
         return $userInfo;
     }
 }
