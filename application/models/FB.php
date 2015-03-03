@@ -105,20 +105,29 @@ class Application_Model_FB
     public function getProfileInformation()
     {
         $me = $this->authenticate();
-         print_r($me);die();     
+              
         $hometown = $me['hometown'];
         
         $date1=date_create($me['birthday']);
         $date2=date_create();
-        $diff=date_diff($date2,$date1);        
+        $diff=date_diff($date2,$date1); 
+
+        //Checks work related information
+        $work_info = array();
+        if(isset($me['work'])) {
+            foreach ($me['work'] as $key => $value) {
+                $work_info[$value->employer->id] = $value->employer->name;
+            }
+        }       
         
         $userInfo = array(1 => $me['id'],
                           3 => $me['name'],
                           4 => $hometown->name,
                           6 => $me['birthday'],
-                          7 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',                        
+                          7 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',
+                          16 => $work_info
         );
-        
+        print_r($userInfo);die();
         return $userInfo;
     }
 }
