@@ -57,3 +57,13 @@ textarea {
 .sidebar-menu a {
 	cursor: default;
 }
+
+#graph-container {
+	width: 670px;
+	height: 480px;
+	margin: 0 auto;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border: 6px double #337ab7;
+}

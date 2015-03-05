@@ -1,0 +1,62 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Universidad del Valle</title>
+    <?php 
+        echo $this->headLink()->appendStylesheet('/css/global.css');
+        echo $this->headLink()->appendStylesheet('/css/bootstrap.min.css'); 
+        echo $this->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+        echo $this->headScript()->appendFile('/js/bootstrap.min.js');
+
+ 		echo $this->headScript()->appendFile('/js/sigma.js-1.0.3/src/sigma.core.js')
+						->appendFile('/js/sigma.js-1.0.3/src/conrad.js')
+						->appendFile('/js/sigma.js-1.0.3/src/utils/sigma.utils.js')
+						->appendFile('/js/sigma.js-1.0.3/src/utils/sigma.polyfills.js')
+						->appendFile('/js/sigma.js-1.0.3/src/sigma.settings.js')
+						->appendFile('/js/sigma.js-1.0.3/src/classes/sigma.classes.dispatcher.js')
+						->appendFile('/js/sigma.js-1.0.3/src/classes/sigma.classes.configurable.js')
+						->appendFile('/js/sigma.js-1.0.3/src/classes/sigma.classes.graph.js')
+						->appendFile('/js/sigma.js-1.0.3/src/classes/sigma.classes.camera.js')
+						->appendFile('/js/sigma.js-1.0.3/src/classes/sigma.classes.quad.js')
+						->appendFile('/js/sigma.js-1.0.3/src/captors/sigma.captors.mouse.js')
+						->appendFile('/js/sigma.js-1.0.3/src/captors/sigma.captors.touch.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/sigma.renderers.canvas.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/sigma.renderers.webgl.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/sigma.renderers.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.nodes.fast.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.fast.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/webgl/sigma.webgl.edges.arrow.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.labels.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.hovers.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.nodes.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.def.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curve.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.arrow.js')
+						->appendFile('/js/sigma.js-1.0.3/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js')
+						->appendFile('/js/sigma.js-1.0.3/src/middlewares/sigma.middlewares.rescale.js')
+						->appendFile('/js/sigma.js-1.0.3/src/middlewares/sigma.middlewares.copy.js')
+						->appendFile('/js/sigma.js-1.0.3/src/misc/sigma.misc.animation.js')
+						->appendFile('/js/sigma.js-1.0.3/src/misc/sigma.misc.bindEvents.js')
+						->appendFile('/js/sigma.js-1.0.3/src/misc/sigma.misc.drawHovers.js')
+						->appendFile('/js/sigma.js-1.0.3/plugins/sigma.parsers.gexf/gexf-parser.js')
+						->appendFile('/js/sigma.js-1.0.3/plugins/sigma.parsers.gexf/sigma.parsers.gexf.js');
+    ?>
+</head>
+<body> 
+    <div class="container">
+        <div class="header">
+            <img class="pull-left university-logo" src="<?=$this->baseUrl()?>/images/logoUni.png" />
+            <img class="pull-right coaptar-logo" src="<?=$this->baseUrl()?>/images/logoencuesta.png" />
+        </div>
+        <div class="content">
+            <?php echo $this->layout()->content ?>
+        </div>
+        <div class="footer">
+            <img class="pull-right" src="<?=$this->baseUrl()?>/images/linkstaria_logo.png" />
+        </div>
+     </div>
+</body>
+</html>
