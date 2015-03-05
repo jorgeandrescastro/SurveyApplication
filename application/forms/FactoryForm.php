@@ -131,7 +131,12 @@ class Application_Form_FactoryForm extends Zend_Form
 	   }   
 	   
 	   if(isset($prepopulatedFields[$question->getId()])) {
-	       $field->setValue($prepopulatedFields[$question->getId()]);
+         if(is_array($prepopulatedFields[$question->getId()])) {
+            $values = array_values($prepopulatedFields[$question->getId()]);
+            $field->setValue(implode(PHP_EOL, $values));  
+         } else {
+	          $field->setValue($prepopulatedFields[$question->getId()]);
+         }
 	   }
 
      if(!$question->isEditable()) {
