@@ -10,9 +10,10 @@ class Application_Model_Node
      /**
       * Constants for the node types
       */
-     const NODE_USER = 1;
-     const NODE_CONTACT = 2;
-     const NODE_COMPANY = 3;
+     const NODE_MAIN = 1;
+     const NODE_USER = 2;
+     const NODE_CONTACT = 3;
+     const NODE_COMPANY = 4;
 
 
      /**

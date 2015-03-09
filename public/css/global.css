@@ -58,14 +58,19 @@ textarea {
 	cursor: default;
 }
 
-#graph-container {
-	width: 670px;
-	height: 480px;
+#graph {
+	width: 680px;
+	height: 492px;
 	margin: 0 auto;
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border: 6px double #337ab7;
+}
+
+#graph-container {
+	width: 670px;
+	height: 480px;
 }
 
 select optgroup {
