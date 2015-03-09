@@ -67,3 +67,7 @@ textarea {
 	-webkit-border-radius: 8px;
 	border: 6px double #337ab7;
 }
+
+select optgroup {
+	color: white;
+}

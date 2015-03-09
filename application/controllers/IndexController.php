@@ -32,7 +32,7 @@ class IndexController extends Zend_Controller_Action
 	    
 	    if(is_null($internalUserId) || empty($internalUserId)){
 	        //TODO: Uncomment
-// 	        $this->_user   = $this->getUserFromFacebook();
+	        // $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
 	        $this->_user = $this->_mappers['USER']->find(71);
