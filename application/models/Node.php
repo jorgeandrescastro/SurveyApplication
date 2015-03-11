@@ -21,6 +21,12 @@ class Application_Model_Node
       * @var int
       */
      protected $_id;
+
+     /**
+      * Id of the User ID
+      * @var int
+      */
+     protected $_user;
      
      /**
       * Name of the Node
@@ -40,6 +46,26 @@ class Application_Model_Node
      {
      }
      
+     /**
+      * Setter of the user 
+      * @param int $user
+      * @return Application_Model_Node
+      */
+     public function setUser($user)
+     {
+         $this->_user = $user;
+         return $this;
+     }
+     
+     /**
+      * Getter of the user
+      * @return int
+      */
+     public function getUser() 
+     {
+         return $this->_user;
+     }
+
      /**
       * Setter of the id 
       * @param int $id

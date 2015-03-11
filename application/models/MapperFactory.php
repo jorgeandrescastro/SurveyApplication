@@ -20,7 +20,8 @@ class Application_Model_MapperFactory
             'BLOCK'    => new Application_Model_BlockMapper(),
             'QUESTION' => new Application_Model_QuestionMapper(),
             'ANSWER'   => new Application_Model_AnswerMapper(),
-            'USERDATA' => new Application_Model_UserDataMapper()          
+            'USERDATA' => new Application_Model_UserDataMapper(),
+            'REPORT'   => new Application_Model_ReportMapper(),          
         );
     }
 }

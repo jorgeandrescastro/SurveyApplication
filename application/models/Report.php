@@ -118,9 +118,72 @@ class Application_Model_Report
          return $this->_edges;
      }
 
-     private function generateGEXFReport()
+     public function generateGEXFReport()
      {
-        //TODO
+        $xml = new DOMDocument("1.0");
+        $xml->encoding = "UTF-8";
+
+        $root = $xml->createElement("gexf");
+        $root->setAttribute("xmlns:viz", "http:///www.gexf.net/1.1draft/viz");
+        $root->setAttribute("version", "1.1");
+        $root->setAttribute("xmlns", "http://www.gexf.net/1.1draft");
+        $xml->appendChild($root);
+
+        $graph = $xml->createElement("graph");
+        $graph->setAttribute("defaultedgetype", "directed");
+        $graph->setAttribute("idtype", "string");
+        $graph->setAttribute("type", "static");
+
+        $attrs = $xml->createElement("attributes");
+        $attrs->setAttribute("class", "node");
+        $attrs->setAttribute("mode", "static");
+
+        $attr1 = $xml->createElement("attribute");
+        $attr1->setAttribute("id", "authority");
+        $attr1->setAttribute("title", "Authority");
+        $attr1->setAttribute("type", "float");
+
+        $attr2 = $xml->createElement("attribute");
+        $attr2->setAttribute("id", "hub");
+        $attr2->setAttribute("title", "Hub");
+        $attr2->setAttribute("type", "float");
+        $attrs->appendChild($attr1);
+        $attrs->appendChild($attr2);
+        $graph->appendChild($attrs);
+        
+
+        $nodesElement = $xml->createElement("nodes");
+        foreach ($this->_nodes as $key => $node) {
+          $nodeElement = $xml->createElement("node");
+          $nodeElement->setAttribute("id", $node->getId());
+          $nodeElement->setAttribute("label", $node->getName());
+          $nodesElement->appendChild($nodeElement);
+        }
+        $graph->appendChild($nodesElement);
+
+        $edgesElement = $xml->createElement("edges");
+        foreach ($this->_edges as $key => $edge) {
+          $edgeElement = $xml->createElement("edge");
+          $edgeElement->setAttribute("id", $edge->getId());
+          $edgeElement->setAttribute("source", $edge->getSource());
+          $edgeElement->setAttribute("target", $edge->getTarget());
+          $edgesElement->appendChild($edgeElement);
+        }
+        $graph->appendChild($edgesElement);
+
+        $root->appendChild($graph);
+        $xml->formatOutput = true;
+        echo "<xmp>". $xml->saveXML() ."</xmp>";
      }     
+
+     /**
+      * Saves the GEXF report in the server
+      * @param  [type] $name           [Name to be given to the report]
+      * @param  [DOMDocument] $xml     [XML Object]
+      */
+     private function saveReport($name, $xml) 
+     {
+        $xml->save("gexf/$name.gexf") or die("Error");      
+     }
 
 }

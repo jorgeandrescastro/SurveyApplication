@@ -678,6 +678,11 @@ UPDATE `univalle_survey_information`.`questions` SET `has_dependent`='1' WHERE `
 
 
 
+CREATE TABLE `univalle_survey_information`.`nodes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `type` INT NULL,
+  PRIMARY KEY (`id`));
 
 
 

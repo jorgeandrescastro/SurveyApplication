@@ -114,6 +114,11 @@ class IndexController extends Zend_Controller_Action
     public function reportAction()
     {        
         $this->_helper->layout->setLayout('gexfLayout');
+
+        $report = $this->_mappers['REPORT']->fetchReport($this->_user->getId());
+
+        $report->generateGEXFReport();
+
     }
     
     /**

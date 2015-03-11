@@ -1,12 +1,14 @@
 <p class="lead">
     Tu Red de contactos se ha generado de la siguiente forma:
 </p> 
-<div id="graph-container"></div>
+<div id="graph">
+  <div id="graph-container"></div>
+</div>
 
 <script>
-// sigma.parsers.gexf('../gexf/gexfejm1.gexf', {
-// sigma.parsers.gexf('../gexf/arctic.gexf', {
-sigma.parsers.gexf('../gexf/lesmiserables.gexf', {
+sigma.parsers.gexf('../../gexf/gexfejm1.gexf', {
+// sigma.parsers.gexf('../../gexf/arctic.gexf', {
+// sigma.parsers.gexf('../../gexf/lesmiserables.gexf', {
   container: 'graph-container'
 });
 </script>
