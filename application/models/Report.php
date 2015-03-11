@@ -143,20 +143,25 @@ class Application_Model_Report
         $attr1->setAttribute("title", "Authority");
         $attr1->setAttribute("type", "float");
 
-        $attr2 = $xml->createElement("attribute");
-        $attr2->setAttribute("id", "hub");
-        $attr2->setAttribute("title", "Hub");
-        $attr2->setAttribute("type", "float");
-        $attrs->appendChild($attr1);
-        $attrs->appendChild($attr2);
-        $graph->appendChild($attrs);
-        
-
         $nodesElement = $xml->createElement("nodes");
         foreach ($this->_nodes as $key => $node) {
           $nodeElement = $xml->createElement("node");
           $nodeElement->setAttribute("id", $node->getId());
           $nodeElement->setAttribute("label", $node->getName());
+          $vizElement = $xml->createElement("viz:size");
+          $vizElement->setAttribute("value", "1");          
+          $nodeElement->appendChild($vizElement);
+          $vizElement = $xml->createElement("viz:color");
+          $vizElement->setAttribute("b", "222");
+          $vizElement->setAttribute("g", "222");
+          $vizElement->setAttribute("r", "222");          
+          $nodeElement->appendChild($vizElement);
+          $vizElement = $xml->createElement("viz:position");
+          $vizElement->setAttribute("x", (rand(-200, 200)));
+          $vizElement->setAttribute("y", (rand(-200, 200)));
+          $vizElement->setAttribute("z", "0");          
+          $nodeElement->appendChild($vizElement);
+          
           $nodesElement->appendChild($nodeElement);
         }
         $graph->appendChild($nodesElement);
@@ -173,7 +178,9 @@ class Application_Model_Report
 
         $root->appendChild($graph);
         $xml->formatOutput = true;
-        echo "<xmp>". $xml->saveXML() ."</xmp>";
+
+        // $this->saveReport($this->_userId, $xml);
+        // echo "<xmp>". $xml->saveXML() ."</xmp>";
      }     
 
      /**
@@ -183,7 +190,7 @@ class Application_Model_Report
       */
      private function saveReport($name, $xml) 
      {
-        $xml->save("gexf/$name.gexf") or die("Error");      
+        $xml->save("gexf/report-$name.gexf") or die("Error");      
      }
 
 }

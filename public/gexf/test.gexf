@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf
+    xmlns:viz="http:///www.gexf.net/1.1draft/viz" version="1.1"
+    xmlns="http://www.gexf.net/1.1draft">
+    <meta lastmodifieddate="2010-05-29+01:27">
+        <Creator>ofNodesAndEdges.com</Creator>
+        <Title>Les Misérables, the characters coappearance weighted graph</Title>
+    </meta>
+    <graph defaultedgetype="directed" idtype="string" type="static">
+        <attributes class="node" mode="static">
+            <attribute id="authority" title="Authority" type="float"/>
+            <attribute id="hub" title="Hub" type="float"/>
+        </attributes>
+        <nodes count="77">
+            <node id="0.0" label="Myriel">
+                <attvalues>
+                    <attvalue for="authority" value="0.01880342"/>
+                    <attvalue for="hub" value="0.01880342"/>
+                </attvalues>
+                <viz:size value="4"/>
+                <viz:color r="0" g="128" b="0"/>
+                <viz:position x="200" y="-200" z="0.0"/>
+                <viz:shape value="disc"/>
+            </node>
+            <node id="1.0" label="Napoleon">
+                <attvalues>
+                    <attvalue for="authority" value="0.0034188034"/>
+                    <attvalue for="hub" value="0.0034188034"/>
+                </attvalues>
+                <viz:size value="4"/>
+                <viz:color r="128" g="128" b="0"/>
+                <viz:position x="-200" y="200.118374" z="0.0"/>
+                <viz:shape value="diamond"/>
+            </node>
+
+            <node id="2.0" label="Dumas">
+                <attvalues>
+                    <attvalue for="authority" value="0.01880342"/>
+                    <attvalue for="hub" value="0.01880342"/>
+                </attvalues>
+                <viz:size value="4"/>
+                <viz:color r="128" g="0" b="128"/>
+                <viz:position x="200" y="0" z="0.0"/>
+                <viz:shape value="disc"/>
+            </node>
+            
+        </nodes>
+        <edges count="254">
+            <edge id="0" source="1.0" target="0.0" weight="8.0">
+                <viz:color r="255" g="165" b="0"/>
+                <viz:thickness value="2"/>
+            </edge>
+            <edge id="2" source="1.0" target="2.0" weight="8.0">
+                <viz:color r="112" g="128" b="144"/>
+            </edge>
+        </edges>
+    </graph>
+</gexf>

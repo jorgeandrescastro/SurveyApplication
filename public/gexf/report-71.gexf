@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http:///www.gexf.net/1.1draft/viz" version="1.1">
+  <graph defaultedgetype="directed" idtype="string" type="static">
+    <nodes>
+      <node id="1" label="Jorge Andres Castro">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="241" y="61" z="0"/>
+      </node>
+      <node id="2" label="Guerrilla Mobile Berlin GmbH">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="227" y="28" z="0"/>
+      </node>
+      <node id="3" label="Softgames">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="332" y="54" z="0"/>
+      </node>
+      <node id="4" label="Markus Stuebing">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="201" y="7" z="0"/>
+      </node>
+      <node id="5" label="Roland Castillo">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="354" y="114" z="0"/>
+      </node>
+      <node id="6" label="Iván Sanabria">
+        <viz:size value="22.5"/>
+        <viz:color b="222" g="222" r="222"/>
+        <viz:position x="366" y="-10" z="0"/>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="1" source="1" target="2"/>
+      <edge id="2" source="1" target="4"/>
+      <edge id="3" source="4" target="3"/>
+      <edge id="4" source="5" target="1"/>
+      <edge id="5" source="6" target="1"/>
+    </edges>
+  </graph>
+</gexf>
