@@ -149,12 +149,12 @@ class Application_Model_Report
           $nodeElement->setAttribute("id", $node->getId());
           $nodeElement->setAttribute("label", $node->getName());
           $vizElement = $xml->createElement("viz:size");
-          $vizElement->setAttribute("value", "1");          
+          $vizElement->setAttribute("value", $node->getSize());          
           $nodeElement->appendChild($vizElement);
           $vizElement = $xml->createElement("viz:color");
-          $vizElement->setAttribute("b", "222");
-          $vizElement->setAttribute("g", "222");
-          $vizElement->setAttribute("r", "222");          
+          $vizElement->setAttribute("r", $node->getColorScale('r'));
+          $vizElement->setAttribute("g", $node->getColorScale('g'));
+          $vizElement->setAttribute("b", $node->getColorScale('b'));          
           $nodeElement->appendChild($vizElement);
           $vizElement = $xml->createElement("viz:position");
           $vizElement->setAttribute("x", (rand(-200, 200)));
@@ -172,6 +172,11 @@ class Application_Model_Report
           $edgeElement->setAttribute("id", $edge->getId());
           $edgeElement->setAttribute("source", $edge->getSource());
           $edgeElement->setAttribute("target", $edge->getTarget());
+          $vizElement = $xml->createElement("viz:color");
+          $vizElement->setAttribute("r", $edge->getColorScale('r'));
+          $vizElement->setAttribute("g", $edge->getColorScale('g'));
+          $vizElement->setAttribute("b", $edge->getColorScale('b'));          
+          $edgeElement->appendChild($vizElement);
           $edgesElement->appendChild($edgeElement);
         }
         $graph->appendChild($edgesElement);
@@ -179,7 +184,7 @@ class Application_Model_Report
         $root->appendChild($graph);
         $xml->formatOutput = true;
 
-        // $this->saveReport($this->_userId, $xml);
+        $this->saveReport($this->_userId, $xml);
         // echo "<xmp>". $xml->saveXML() ."</xmp>";
      }     
 

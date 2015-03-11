@@ -16,6 +16,12 @@ class Application_Model_Node
      const NODE_COMPANY = 4;
 
 
+     protected $_colors = array(
+                          Application_Model_Node::NODE_MAIN => array('r' => 128, 'g' => 0, 'b' => 0),
+                          Application_Model_Node::NODE_USER => array('r' => 255, 'g' => 255, 'b' => 255),
+                          Application_Model_Node::NODE_CONTACT => array('r' => 255, 'g' => 165, 'b' => 0),
+                          Application_Model_Node::NODE_COMPANY => array('r' => 0, 'g' => 128, 'b' => 0));
+
      /**
       * Id of the Node
       * @var int
@@ -124,6 +130,37 @@ class Application_Model_Node
      public function getType() 
      {
          return $this->_type;
+     }
+
+     /**
+      * Getter of the color of the node
+      * @param  int $scaleColor
+      * @return int
+      */
+     public function getColorScale($scaleColor) 
+     {
+         return $this->_colors[$this->_type][$scaleColor];
+     }
+
+
+     /**
+      * Gets the size the node should be displayed in
+      * @return int
+      */
+     public function getSize() {
+        switch ($this->_type) {
+          case Application_Model_Node::NODE_MAIN:
+            $size = 3;
+            break;
+          case Application_Model_Node::NODE_COMPANY:
+            $size = 2;
+            break;
+          
+          default:
+            $size = 1;
+            break;
+        }
+        return $size;
      }
      
 }

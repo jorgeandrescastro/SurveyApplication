@@ -14,6 +14,7 @@ class Application_Model_Edge
      const EDGE_FIRST_DEGREE_CONTACT = 2;
      const EDGE_SECOND_DEGREE_CONTACT = 3;
 
+     protected $_colors = array('r' => 112, 'g' => 128, 'b' => 144);
 
      /**
       * Id of the Edge
@@ -99,6 +100,14 @@ class Application_Model_Edge
          return $this->_target;
      }
      
-     
+     /**
+      * Getter of the color of the edge
+      * @param  int $scaleColor
+      * @return int
+      */
+     public function getColorScale($scaleColor) 
+     {
+         return $this->_colors[$scaleColor];
+     }
      
 }
