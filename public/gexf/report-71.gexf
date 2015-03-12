@@ -5,32 +5,32 @@
       <node id="1" label="Jorge Andres Castro">
         <viz:size value="3"/>
         <viz:color r="128" g="0" b="0"/>
-        <viz:position x="-32" y="27" z="0"/>
+        <viz:position x="-158" y="-128" z="0"/>
       </node>
       <node id="2" label="Guerrilla Mobile Berlin GmbH">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="76" y="15" z="0"/>
+        <viz:position x="-166" y="191" z="0"/>
       </node>
       <node id="3" label="Softgames">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="2" y="-56" z="0"/>
+        <viz:position x="22" y="168" z="0"/>
       </node>
       <node id="4" label="Markus Stuebing">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-77" y="-144" z="0"/>
+        <viz:position x="-178" y="-76" z="0"/>
       </node>
       <node id="5" label="Roland Castillo">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-2" y="-112" z="0"/>
+        <viz:position x="185" y="75" z="0"/>
       </node>
       <node id="6" label="Iván Sanabria">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-144" y="-7" z="0"/>
+        <viz:position x="-189" y="74" z="0"/>
       </node>
     </nodes>
     <edges>

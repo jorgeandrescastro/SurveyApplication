@@ -60,7 +60,7 @@ textarea {
 
 #graph {
 	width: 680px;
-	height: 492px;
+	height: 520px;
 	margin: 0 auto;
 	border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -75,4 +75,27 @@ textarea {
 
 select optgroup {
 	color: white;
+}
+
+.circle {
+	border-radius: 50%;
+	width: 15px;
+	height: 15px; 
+	float: left;
+}
+
+.green {
+	background: #008000;
+}
+
+.maroon {
+	background: #800000;
+}
+
+.orange {
+	background: #FFA500;
+}
+
+.margin-spacer {
+	margin: 0 5px;
 }
