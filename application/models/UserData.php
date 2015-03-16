@@ -147,27 +147,18 @@ class Application_Model_UserData
                                             $user_data[3]->getResults()['question_45'], $nodeMain);
 
 
-        die();
-
-
-
-        $node = new Application_Model_Node();
-        $node->setName($user_data[2]->getResults()['question_58']);
-        $node->setType(4);
-        // $nodeMapper->save($node);
 
         $companies_names = $user_data[2]->getResults()['question_16'];
-        $companies = explode(PHP_EOL, $companies);
+        $companies = explode(PHP_EOL, $companies_names);
         foreach ($companies as $company) {
             $node = new Application_Model_Node();
             $node->setName($company);
-            $node->setType(4);
-            // $nodeMapper->save($node);
+            $node->setType(Application_Model_Node::NODE_COMPANY);
+            $nodeMapper->save($node);
+
+            $edge = new Application_Model_Edge($nodeMain->getId(), $node->getId());
+            $edgeMapper->save($edge);
         }
-
-
-
-        die(); 
 
      }
 

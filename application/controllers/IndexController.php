@@ -179,7 +179,6 @@ class IndexController extends Zend_Controller_Action
     private function processInformation(){
         $user_data = $this->_mappers['USERDATA']->getDataFromUser($this->_user);    
         Application_Model_UserData::generateNodes($user_data);
-        print_r($user_data);die();
     }
     
 }

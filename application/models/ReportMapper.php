@@ -54,10 +54,8 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
         }
         $edges = array();
         foreach($resultEdges as $row) {
-            $edge = new Application_Model_Edge();
-            $edge->setId($row['id'])
-                 ->setSource($row['source'])
-                 ->setTarget($row['target']);
+            $edge = new Application_Model_Edge($row['source'], $row['target']);
+            $edge->setId($row['id']);
             
             $edges[$row['id']] = $edge;
         }
