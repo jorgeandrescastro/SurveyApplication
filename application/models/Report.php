@@ -157,8 +157,8 @@ class Application_Model_Report
           $vizElement->setAttribute("b", $node->getColorScale('b'));          
           $nodeElement->appendChild($vizElement);
           $vizElement = $xml->createElement("viz:position");
-          $vizElement->setAttribute("x", (rand(-200, 200)));
-          $vizElement->setAttribute("y", (rand(-200, 200)));
+          $vizElement->setAttribute("x", $node->getPosition());
+          $vizElement->setAttribute("y", $node->getPosition());
           $vizElement->setAttribute("z", "0");          
           $nodeElement->appendChild($vizElement);
           

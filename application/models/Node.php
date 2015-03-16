@@ -141,6 +141,18 @@ class Application_Model_Node
      {
          return $this->_colors[$this->_type][$scaleColor];
      }
+     
+     /**
+      * Getter for the position of the node
+      * @return int
+      */
+     public function getPosition() {
+         if($this->_type == $this::NODE_MAIN) {
+             return 0;
+         } else {
+             return rand(-200, 200);
+         }
+     }
 
 
      /**
