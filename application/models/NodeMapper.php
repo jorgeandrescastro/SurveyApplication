@@ -26,24 +26,21 @@ class Application_Model_NodeMapper extends Application_Model_AbstractMapper
             'user' => $node->getUser(),
             'name' => $node->getName(),
             'type' => $node->getType(),
-        );        
+        );  
+
+        $persistedNode = $this->findByNodeName($node->getName());
+        if(!is_null($persistedNode)) {
+            $node = $persistedNode;
+            $data['id'] = $node->getId();
+        }
         
         if (!is_null($node->getId())) {
             return $this->getDbTable($this->_dbTableClassName)->update($data, array('id = ?' => $data['id']));
         } else {
-
-            $persistedNode = $this->findByNodeName($node->getName());
-            if(is_null($persistedNode)) {
-                unset($data['id']);
-                $nodeId = $this->getDbTable($this->_dbTableClassName)->insert($data);
-                $node->setId($nodeId);
-                return $nodeId;
-            } else {
-                $node = $persistedNode;
-                return $persistedNode->getId();
-            }
-            
-
+            unset($data['id']);
+            $nodeId = $this->getDbTable($this->_dbTableClassName)->insert($data);
+            $node->setId($nodeId);
+            return $nodeId;
         }
         
     }

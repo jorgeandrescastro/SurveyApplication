@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action
 	        // $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
-	        $this->_user = $this->_mappers['USER']->find(71);
+	        $this->_user = $this->_mappers['USER']->find(31);
 	    } else {
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }

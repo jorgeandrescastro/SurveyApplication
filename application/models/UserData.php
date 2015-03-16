@@ -139,7 +139,7 @@ class Application_Model_UserData
         $nodeMain = new Application_Model_Node();
         $nodeMain->setUser($user_data[1]->getUserId());
         $nodeMain->setName($blockResults[1]['question_3']);
-        $nodeMain->setType(Application_Model_Node::NODE_MAIN);
+        $nodeMain->setType(Application_Model_Node::NODE_CONTACT);
         $nodeMapper->save($nodeMain);
 
         Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[2]['question_58'],

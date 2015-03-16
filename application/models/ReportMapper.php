@@ -41,6 +41,10 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
                  ->setName(utf8_encode($row['name']))
                  ->setType($row['type']);
             
+            if($node->getUser() == $userId) {
+                $node->setType(Application_Model_Node::NODE_MAIN);
+            }
+            
             $nodes[$row['id']] = $node;
         }
 
