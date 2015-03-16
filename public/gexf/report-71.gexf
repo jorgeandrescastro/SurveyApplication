@@ -5,42 +5,42 @@
       <node id="1" label="Jorge AndrÃ©s Castro MuÃ±oz">
         <viz:size value="3"/>
         <viz:color r="128" g="0" b="0"/>
-        <viz:position x="-110" y="-193" z="0"/>
+        <viz:position x="0" y="0" z="0"/>
       </node>
       <node id="2" label="ST&amp;T">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="-194" y="-185" z="0"/>
+        <viz:position x="87" y="-58" z="0"/>
       </node>
       <node id="3" label="Sergio Aristizabal">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-194" y="-123" z="0"/>
+        <viz:position x="-136" y="134" z="0"/>
       </node>
       <node id="4" label="Linkstaria Ltda">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="-147" y="62" z="0"/>
+        <viz:position x="128" y="124" z="0"/>
       </node>
       <node id="5" label="Alejandro Marin">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="62" y="113" z="0"/>
+        <viz:position x="30" y="-153" z="0"/>
       </node>
       <node id="6" label="Guerilla Mobile Berlin GmbH&#13;">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="50" y="-10" z="0"/>
+        <viz:position x="121" y="115" z="0"/>
       </node>
       <node id="7" label="AIESEC&#13;">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="101" y="0" z="0"/>
+        <viz:position x="146" y="68" z="0"/>
       </node>
       <node id="8" label="Softgames GmbH">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="-118" y="177" z="0"/>
+        <viz:position x="98" y="170" z="0"/>
       </node>
     </nodes>
     <edges>
