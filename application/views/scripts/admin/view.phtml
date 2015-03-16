@@ -1,3 +1,4 @@
+<? $url = $this->url(array('controller' => 'admin', 'action' => 'gexf', 'iid' => $this->user->getId())); ?>
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">
@@ -16,6 +17,13 @@
         </p>
         <p><strong>Fecha de Finalización de la Encuesta: </strong>
             <?php echo $this->user->getFinishDate(true); ?>
+        </p>
+        <p><strong>Reporte GEXF: </strong>
+           <a href="<?php echo $url; ?>">
+                <button type="button" class="btn btn-primary btn-xs">
+                    Ver
+                </button>
+            </a>
         </p>
         <?php echo $this->partial('common/user-responses.phtml', array('survey' => $this->survey, 
                                                                        'userData' => $this->userData)); ?>
