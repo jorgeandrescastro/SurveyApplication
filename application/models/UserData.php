@@ -131,24 +131,28 @@ class Application_Model_UserData
 
         $nodeMapper = new Application_Model_NodeMapper();
         $edgeMapper = new Application_Model_EdgeMapper();
+        $blockResults = array (1 => $user_data[1]->getResults(),
+                2 => $user_data[2]->getResults(),
+                3 => $user_data[3]->getResults(),
+        );
 
         $nodeMain = new Application_Model_Node();
         $nodeMain->setUser($user_data[1]->getUserId());
-        $nodeMain->setName($user_data[1]->getResults()['question_3']);
+        $nodeMain->setName($blockResults[1]['question_3']);
         $nodeMain->setType(Application_Model_Node::NODE_MAIN);
         $nodeMapper->save($nodeMain);
 
-        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $user_data[2]->getResults()['question_58'],
-                                            $user_data[2]->getResults()['question_18'], $user_data[2]->getResults()['question_21'],
-                                            $user_data[2]->getResults()['question_24'], $nodeMain);
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[2]['question_58'],
+                                            $blockResults[2]['question_18'], $blockResults[2]['question_21'],
+                                            $blockResults[2]['question_24'], $nodeMain);
 
-        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $user_data[3]->getResults()['question_28'],
-                                            $user_data[3]->getResults()['question_39'], $user_data[3]->getResults()['question_42'],
-                                            $user_data[3]->getResults()['question_45'], $nodeMain);
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[3]['question_28'],
+                                            $blockResults[3]['question_39'], $blockResults[3]['question_42'],
+                                            $blockResults[3]['question_45'], $nodeMain);
 
 
 
-        $companies_names = $user_data[2]->getResults()['question_16'];
+        $companies_names = $blockResults[2]['question_16'];
         $companies = explode(PHP_EOL, $companies_names);
         foreach ($companies as $company) {
             $node = new Application_Model_Node();
