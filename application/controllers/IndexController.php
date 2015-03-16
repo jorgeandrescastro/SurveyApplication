@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action
 	        // $this->_user   = $this->getUserFromFacebook();
 	        
 	        //TODO: Delete test code
-	        $this->_user = $this->_mappers['USER']->find(71);
+	        $this->_user = $this->_mappers['USER']->find(31);
 	    } else {
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
@@ -113,15 +113,19 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
-        $this->processInformation();
-
         $this->_helper->layout->setLayout('gexfLayout');
 
         if(!$this->_user->hasReport()) {
+            $this->processInformation();
+
             $report = $this->_mappers['REPORT']->fetchReport($this->_user->getId());
             $report->generateGEXFReport();
+
+            $this->_user->setReport(1);
+            $this->_mappers['USER']->save($this->_user);
         }
 
+        $this->view->userid = $this->_user->getId();
     }
     
     /**

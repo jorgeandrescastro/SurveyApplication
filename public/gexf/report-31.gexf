@@ -2,55 +2,60 @@
 <gexf xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http:///www.gexf.net/1.1draft/viz" version="1.1">
   <graph defaultedgetype="directed" idtype="string" type="static">
     <nodes>
-      <node id="1" label="Jorge AndrÃ©s Castro MuÃ±oz">
+      <node id="1" label="Alejandro Marin">
         <viz:size value="3"/>
         <viz:color r="128" g="0" b="0"/>
-        <viz:position x="130" y="-133" z="0"/>
+        <viz:position x="180" y="-187" z="0"/>
       </node>
-      <node id="2" label="ST&amp;T">
+      <node id="2" label="Yokono">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="191" y="-163" z="0"/>
+        <viz:position x="190" y="-161" z="0"/>
       </node>
-      <node id="3" label="Sergio Aristizabal">
+      <node id="3" label="Roland Castillo">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-160" y="-29" z="0"/>
+        <viz:position x="154" y="152" z="0"/>
       </node>
-      <node id="4" label="ST&amp;T">
+      <node id="4" label="GMBH">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="131" y="-61" z="0"/>
+        <viz:position x="188" y="-80" z="0"/>
       </node>
-      <node id="5" label="Linkstaria Ltda">
-        <viz:size value="2"/>
-        <viz:color r="0" g="128" b="0"/>
-        <viz:position x="59" y="6" z="0"/>
-      </node>
-      <node id="6" label="Alejandro Marin">
+      <node id="5" label="Contacto Intermedio">
         <viz:size value="1"/>
         <viz:color r="255" g="165" b="0"/>
-        <viz:position x="-188" y="-160" z="0"/>
+        <viz:position x="105" y="-67" z="0"/>
       </node>
-      <node id="7" label="Linkstaria Ltda">
+      <node id="6" label="STYT">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="35" y="-37" z="0"/>
+        <viz:position x="-71" y="155" z="0"/>
       </node>
-      <node id="8" label="Guerilla Mobile Berlin GmbH&#13;">
+      <node id="7" label="Linkstaria">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="54" y="-137" z="0"/>
+        <viz:position x="101" y="-76" z="0"/>
       </node>
-      <node id="9" label="AIESEC&#13;">
+      <node id="8" label="Andres">
+        <viz:size value="1"/>
+        <viz:color r="255" g="165" b="0"/>
+        <viz:position x="72" y="113" z="0"/>
+      </node>
+      <node id="9" label="Yokono&#13;">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="-139" y="34" z="0"/>
+        <viz:position x="101" y="193" z="0"/>
       </node>
-      <node id="10" label="Softgames GmbH">
+      <node id="10" label="Zemoga&#13;">
         <viz:size value="2"/>
         <viz:color r="0" g="128" b="0"/>
-        <viz:position x="-60" y="-69" z="0"/>
+        <viz:position x="-40" y="72" z="0"/>
+      </node>
+      <node id="11" label="Linkstaria ">
+        <viz:size value="2"/>
+        <viz:color r="0" g="128" b="0"/>
+        <viz:position x="-14" y="37" z="0"/>
       </node>
     </nodes>
     <edges>
@@ -60,25 +65,28 @@
       <edge id="2" source="3" target="4">
         <viz:color r="112" g="128" b="144"/>
       </edge>
-      <edge id="3" source="3" target="2">
+      <edge id="3" source="3" target="5">
         <viz:color r="112" g="128" b="144"/>
       </edge>
-      <edge id="4" source="1" target="6">
+      <edge id="4" source="5" target="2">
         <viz:color r="112" g="128" b="144"/>
       </edge>
-      <edge id="5" source="6" target="7">
+      <edge id="5" source="5" target="6">
         <viz:color r="112" g="128" b="144"/>
       </edge>
-      <edge id="6" source="6" target="5">
+      <edge id="6" source="1" target="8">
         <viz:color r="112" g="128" b="144"/>
       </edge>
-      <edge id="7" source="1" target="8">
+      <edge id="7" source="8" target="7">
         <viz:color r="112" g="128" b="144"/>
       </edge>
       <edge id="8" source="1" target="9">
         <viz:color r="112" g="128" b="144"/>
       </edge>
       <edge id="9" source="1" target="10">
+        <viz:color r="112" g="128" b="144"/>
+      </edge>
+      <edge id="10" source="1" target="11">
         <viz:color r="112" g="128" b="144"/>
       </edge>
     </edges>
