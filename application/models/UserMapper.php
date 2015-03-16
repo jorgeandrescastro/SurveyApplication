@@ -36,6 +36,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
              ->setStartDate($row->startDate)
              ->setFinishDate($row->finishDate)
              ->setCurrentBlock($row->currentBlock)
+             ->setReport($row->report)
              ->setFbdata(unserialize($row->fbdata));
 
         return $user;
@@ -61,6 +62,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
                  ->setFinishDate($row['finishDate'])
                  ->setStartDate($row['startDate'])
                  ->setId($row['id'])
+                 ->setReport($row['report'])
                  ->setFbdata(unserialize($row['fbdata']));
             
             return $user;            
@@ -83,6 +85,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
         	'startDate' => $user->getStartDate(),
         	'finishDate' => $user->getFinishDate(),
         	'currentBlock' => $user->getCurrentBlock(),
+            'report' => $user->getReport(),
             'fbdata' => serialize($user->getFbdata()),
         );
         
@@ -137,6 +140,7 @@ class Application_Model_UserMapper extends Application_Model_AbstractMapper
                  ->setStartDate($row['startDate'])
                  ->setFinishDate($row['finishDate'])
                  ->setCurrentBlock($row['currentBlock'])
+                 ->setReport($row['report'])
                  ->setFbdata(unserialize($row['fbdata']));
              
             $users[$row['id']] = $user;

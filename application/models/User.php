@@ -50,10 +50,10 @@ class Application_Model_User
     private $_fbdata;
     
     /**
-     * Strategy for the survey
-     * @var 
+     * Flag for report generation
+     * @var bool
      */
-    private $_userTypeStrategy;
+    private $_report;
     
     /**
      * Constructor of the user
@@ -225,5 +225,34 @@ class Application_Model_User
     public function hasFinishedSurvey()
     {
         return ($this->_finishDate > $this->_startDate);
+    }
+
+    /**
+     * Setter for report
+     * @param int $report
+     * @return Application_Model_User
+     */
+    public function setReport($report)
+    {
+        $this->_report = $report;
+        return $this;
+    }
+
+    /**
+     * Getter for report
+     * @return int
+     */
+    public function getReport()
+    {
+        return $this->_report;
+    }
+    
+    /**
+     * Returns if the user has already a generated report
+     * @return boolean
+     */
+    public function hasReport()
+    {
+        return (1 == $this->_report);
     }
 }
