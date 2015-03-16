@@ -18,12 +18,16 @@
         <p><strong>Fecha de Finalización de la Encuesta: </strong>
             <?php echo $this->user->getFinishDate(true); ?>
         </p>
-        <p><strong>Reporte GEXF: </strong>
-           <a href="<?php echo $url; ?>">
-                <button type="button" class="btn btn-primary btn-xs">
-                    Ver
-                </button>
-            </a>
+        <p><strong>Reporte GEXF: </strong>           
+            <? if($this->user->hasReport()) { ?>
+                <a href="<?php echo $url; ?>">
+                    <button type="button" class="btn btn-primary btn-xs">
+                        Ver
+                    </button>
+                </a>
+            <? } else { ?>
+                El reporte estará disponible cuando el usuario termine de diligenciar el formulario
+            <? } ?>            
         </p>
         <?php echo $this->partial('common/user-responses.phtml', array('survey' => $this->survey, 
                                                                        'userData' => $this->userData)); ?>
