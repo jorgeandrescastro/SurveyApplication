@@ -35,9 +35,15 @@ class Application_Model_Edge
      protected $_target;
      
     
-     
-     public function __construct(array $options = null) 
+     /**
+      * Constructor of the Edge Class
+      * @param [int] $source [ID of the Source Node]
+      * @param [int] $target [ID of the Target Node]
+      */
+     public function __construct($source, $target) 
      {
+        $this->_source = $source;
+        $this->_target = $target;
      }
      
      /**

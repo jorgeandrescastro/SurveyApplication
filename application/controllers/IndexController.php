@@ -46,7 +46,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
-            $this->_redirect('index/thankyou');
+            $this->_redirect('index/report');
         }
         
         $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
@@ -96,7 +96,7 @@ class IndexController extends Zend_Controller_Action
                 } else {
                     $this->_user->setFinishDate(time());
                     $this->_mappers['USER']->save($this->_user);
-                    $this->_redirect('index/thankyou');
+                    $this->_redirect('index/report');
                 }                 
             }
         }
@@ -113,6 +113,8 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
+        $this->processInformation();
+
         $this->_helper->layout->setLayout('gexfLayout');
 
         $report = $this->_mappers['REPORT']->fetchReport($this->_user->getId());
@@ -167,6 +169,17 @@ class IndexController extends Zend_Controller_Action
 
         return true;
         
+    }
+
+    /**
+     * Generate the nodes out of the survey's responses
+     * @param int $userId
+     * @return boolean
+     */
+    private function processInformation(){
+        $user_data = $this->_mappers['USERDATA']->getDataFromUser($this->_user);    
+        Application_Model_UserData::generateNodes($user_data);
+        print_r($user_data);die();
     }
     
 }

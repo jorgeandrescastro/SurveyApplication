@@ -120,6 +120,110 @@ class Application_Model_UserData
          return $this->_results;
      }
      
-    
+     /**
+      * Generate nodes and edges out of the user data
+      * @param  array $user_data
+      * @return [array]
+      */
+     public static function generateNodes($user_data) {
+        $nodes = array();
+        $edges = array();
+
+        $nodeMapper = new Application_Model_NodeMapper();
+        $edgeMapper = new Application_Model_EdgeMapper();
+
+        $nodeMain = new Application_Model_Node();
+        $nodeMain->setUser($user_data[1]->getUserId());
+        $nodeMain->setName($user_data[1]->getResults()['question_3']);
+        $nodeMain->setType(Application_Model_Node::NODE_MAIN);
+        $nodeMapper->save($nodeMain);
+
+        
+
+        die();
+
+
+
+        $node = new Application_Model_Node();
+        $node->setName($user_data[2]->getResults()['question_58']);
+        $node->setType(4);
+        // $nodeMapper->save($node);
+
+        $companies_names = $user_data[2]->getResults()['question_16'];
+        $companies = explode(PHP_EOL, $companies);
+        foreach ($companies as $company) {
+            $node = new Application_Model_Node();
+            $node->setName($company);
+            $node->setType(4);
+            // $nodeMapper->save($node);
+        }
+
+
+
+        die(); 
+
+     }
+
+     private function generateWorkInformationNodes($work, $contact, @contactWork, $intermediary, $nodeMain) 
+     {
+        $nodeWork = new Application_Model_Node();
+        $nodeWork->setName($user_data[2]->getResults()['question_58']);
+        $nodeWork->setType(Application_Model_Node::NODE_COMPANY);
+        $nodeMapper->save($nodeWork);
+
+
+        if(!empty($user_data[2]->getResults()['question_18'])) {          
+            $nodeDirectContact = new Application_Model_Node();
+            $nodeDirectContact->setName($user_data[2]->getResults()['question_18']);
+            $nodeDirectContact->setType(Application_Model_Node::NODE_CONTACT);
+            $nodeMapper->save($nodeDirectContact);
+
+            if(!empty($user_data[2]->getResults()['question_21'])) {
+                $nodeDirectWork = new Application_Model_Node();
+                $nodeDirectWork->setName($user_data[2]->getResults()['question_21']);
+                $nodeDirectWork->setType(Application_Model_Node::NODE_COMPANY);
+                $nodeMapper->save($nodeDirectWork);              
+            }
+        }
+
+        if(!empty($user_data[2]->getResults()['question_24'])) {
+            $nodeIndirectContact = new Application_Model_Node();
+            $nodeIndirectContact->setName('Contacto Intermedio');
+            $nodeIndirectContact->setType(Application_Model_Node::NODE_CONTACT);
+            $nodeMapper->save($nodeIndirectContact);
+
+            if(!empty($user_data[2]->getResults()['question_24'])) {
+                $nodeIndirectWork = new Application_Model_Node();
+                $nodeIndirectWork->setName($user_data[2]->getResults()['question_24']);
+                $nodeIndirectWork->setType(Application_Model_Node::NODE_COMPANY);
+                $nodeMapper->save($nodeIndirectWork);
+            }
+        }
+
+        if(empty($nodeDirectContact)) {
+          $edge = new Application_Model_Edge($nodeMain->getId(), $nodeWork->getId());
+          $edgeMapper->save($edge);
+        } else {
+          $edge = new Application_Model_Edge($nodeMain->getId(), $nodeDirectContact->getId());
+          $edgeMapper->save($edge);
+          if(!empty($nodeDirectWork)) {
+            $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeDirectWork->getId());
+            $edgeMapper->save($edge);
+          }
+          if(empty($nodeIndirectContact)) {
+            $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeWork->getId());
+            $edgeMapper->save($edge);
+          } else {
+            $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeIndirectContact->getId());
+            $edgeMapper->save($edge);
+            $edge = new Application_Model_Edge($nodeIndirectContact->getId(), $nodeWork->getId());
+            $edgeMapper->save($edge);
+            if(!empty($nodeIndirectWork)) {
+              $edge = new Application_Model_Edge($nodeIndirectContact->getId(), $nodeIndirectWork->getId());
+              $edgeMapper->save($edge);
+            }
+          }
+        }
+     }
      
 }
