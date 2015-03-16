@@ -138,7 +138,14 @@ class Application_Model_UserData
         $nodeMain->setType(Application_Model_Node::NODE_MAIN);
         $nodeMapper->save($nodeMain);
 
-        
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $user_data[2]->getResults()['question_58'],
+                                            $user_data[2]->getResults()['question_18'], $user_data[2]->getResults()['question_21'],
+                                            $user_data[2]->getResults()['question_24'], $nodeMain);
+
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $user_data[3]->getResults()['question_28'],
+                                            $user_data[3]->getResults()['question_39'], $user_data[3]->getResults()['question_42'],
+                                            $user_data[3]->getResults()['question_45'], $nodeMain);
+
 
         die();
 
@@ -164,37 +171,37 @@ class Application_Model_UserData
 
      }
 
-     private function generateWorkInformationNodes($work, $contact, @contactWork, $intermediary, $nodeMain) 
+     private static function generateWorkInformationNodes($nodeMapper, $edgeMapper, $work, $contact, $contactWork, $intermediary, $nodeMain) 
      {
         $nodeWork = new Application_Model_Node();
-        $nodeWork->setName($user_data[2]->getResults()['question_58']);
+        $nodeWork->setName($work);
         $nodeWork->setType(Application_Model_Node::NODE_COMPANY);
         $nodeMapper->save($nodeWork);
 
 
-        if(!empty($user_data[2]->getResults()['question_18'])) {          
+        if(!empty($contact)) {          
             $nodeDirectContact = new Application_Model_Node();
-            $nodeDirectContact->setName($user_data[2]->getResults()['question_18']);
+            $nodeDirectContact->setName($contact);
             $nodeDirectContact->setType(Application_Model_Node::NODE_CONTACT);
             $nodeMapper->save($nodeDirectContact);
 
-            if(!empty($user_data[2]->getResults()['question_21'])) {
+            if(!empty($contactWork)) {
                 $nodeDirectWork = new Application_Model_Node();
-                $nodeDirectWork->setName($user_data[2]->getResults()['question_21']);
+                $nodeDirectWork->setName($contactWork);
                 $nodeDirectWork->setType(Application_Model_Node::NODE_COMPANY);
                 $nodeMapper->save($nodeDirectWork);              
             }
         }
 
-        if(!empty($user_data[2]->getResults()['question_24'])) {
+        if(!empty($intermediary)) {
             $nodeIndirectContact = new Application_Model_Node();
             $nodeIndirectContact->setName('Contacto Intermedio');
             $nodeIndirectContact->setType(Application_Model_Node::NODE_CONTACT);
             $nodeMapper->save($nodeIndirectContact);
 
-            if(!empty($user_data[2]->getResults()['question_24'])) {
+            if(!empty($intermediary)) {
                 $nodeIndirectWork = new Application_Model_Node();
-                $nodeIndirectWork->setName($user_data[2]->getResults()['question_24']);
+                $nodeIndirectWork->setName($intermediary);
                 $nodeIndirectWork->setType(Application_Model_Node::NODE_COMPANY);
                 $nodeMapper->save($nodeIndirectWork);
             }
