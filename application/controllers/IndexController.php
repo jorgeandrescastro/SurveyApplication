@@ -46,7 +46,6 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
-            print_r("...redirecting...");die();
             $this->_redirect('index/report');
         }
         
@@ -114,6 +113,7 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
+        print_r("...redirected...");die();
         $this->_helper->layout->setLayout('gexfLayout');
          
         if(!$this->_user->hasReport()) {
