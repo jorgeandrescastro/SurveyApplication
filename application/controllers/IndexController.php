@@ -41,13 +41,12 @@ class IndexController extends Zend_Controller_Action
 	    }
 	    
 	    $this->_survey = $this->_mappers['SURVEY']->find(Application_Model_Survey::$DEFAULT_SURVEY);
-        print_r($this->_user->getName());
 	}
 
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
-            print_r("...redirecting...");
+            print_r("...redirecting...");die();
             $this->_redirect('index/report');
         }
         
@@ -115,7 +114,6 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
-        print_r("entro a report " . $this->_user->getId());die();
         $this->_helper->layout->setLayout('gexfLayout');
          
         if(!$this->_user->hasReport()) {
