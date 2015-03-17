@@ -29,11 +29,12 @@ class IndexController extends Zend_Controller_Action
 	    
 	    $request = $this->getRequest();	    
 	    $internalUserId = $request->getParam('iid');
-	    print_r($internalUserId);die();
+	    print_r($internalUserId . ' - ');
 	    if(is_null($internalUserId) || empty($internalUserId)){
-	        //TODO: Uncomment
+	        print_r( 'entro al if - ');
+            //TODO: Uncomment
 	        $this->_user   = $this->getUserFromFacebook();
-	        
+	        print_r($this->_user . ' - ');
 	        //TODO: Delete test code
 	        // $this->_user = $this->_mappers['USER']->find(71);
 	    } else {
@@ -41,6 +42,7 @@ class IndexController extends Zend_Controller_Action
 	    }
 	    
 	    $this->_survey = $this->_mappers['SURVEY']->find(Application_Model_Survey::$DEFAULT_SURVEY);
+        die();
 	}
 
     public function indexAction()
