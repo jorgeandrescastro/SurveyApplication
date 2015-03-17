@@ -29,12 +29,11 @@ class IndexController extends Zend_Controller_Action
 	    
 	    $request = $this->getRequest();	    
 	    $internalUserId = $request->getParam('iid');
-	    print_r($internalUserId . ' - ');
+
 	    if(is_null($internalUserId) || empty($internalUserId)){
-	        print_r( 'entro al if - ');
             //TODO: Uncomment
 	        $this->_user   = $this->getUserFromFacebook();
-	        print_r($this->_user . ' - ');
+	        print_r($this->_user->getName() . ' - ');
 	        //TODO: Delete test code
 	        // $this->_user = $this->_mappers['USER']->find(71);
 	    } else {
