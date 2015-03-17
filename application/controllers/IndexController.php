@@ -137,7 +137,7 @@ class IndexController extends Zend_Controller_Action
     	$facebookConnection = new Application_Model_FB();
     	$facebookUserInformation = $facebookConnection->getProfileInformation();
 
-        $user = $this->_mappers['USER']->findByFacebookId($facebookUserInformation[1]);
+        $user = $this->_mappers['USER']->findByFacebookId(10152613101098041);
                 
         if(empty($user)) {
             $user = new Application_Model_User($facebookUserInformation[1], $facebookUserInformation[3]);
