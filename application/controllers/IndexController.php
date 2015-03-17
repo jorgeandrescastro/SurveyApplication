@@ -114,7 +114,7 @@ class IndexController extends Zend_Controller_Action
     public function reportAction()
     {        
         $this->_helper->layout->setLayout('gexfLayout');
-
+        print_r("expression");die();
         if(!$this->_user->hasReport()) {
             $this->processInformation();
 
