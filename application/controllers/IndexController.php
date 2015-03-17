@@ -114,7 +114,7 @@ class IndexController extends Zend_Controller_Action
     public function reportAction()
     {        
         $this->_helper->layout->setLayout('gexfLayout');
-         
+         print_r($this->_user);die();
         if(!$this->_user->hasReport()) {
             $this->processInformation();
 
@@ -137,8 +137,8 @@ class IndexController extends Zend_Controller_Action
     	$facebookConnection = new Application_Model_FB();
     	$facebookUserInformation = $facebookConnection->getProfileInformation();
 
-        $user = $this->_mappers['USER']->findByFacebookId(10152613101098041);
-                
+        $user = $this->_mappers['USER']->findByFacebookId($facebookUserInformation[1]);
+
         if(empty($user)) {
             $user = new Application_Model_User($facebookUserInformation[1], $facebookUserInformation[3]);
         } 
