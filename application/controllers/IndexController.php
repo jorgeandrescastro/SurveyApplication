@@ -96,7 +96,7 @@ class IndexController extends Zend_Controller_Action
                 } else {
                     $this->_user->setFinishDate(time());
                     $this->_mappers['USER']->save($this->_user);
-                    $this->_redirect('index/report');
+                    $this->_forward('report', 'index');
                 }                 
             }
         }
