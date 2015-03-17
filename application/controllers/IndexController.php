@@ -29,7 +29,7 @@ class IndexController extends Zend_Controller_Action
 	    
 	    $request = $this->getRequest();	    
 	    $internalUserId = $request->getParam('iid');
-	    
+	    print_r($internalUserId);die();
 	    if(is_null($internalUserId) || empty($internalUserId)){
 	        //TODO: Uncomment
 	        $this->_user   = $this->getUserFromFacebook();
@@ -46,7 +46,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
-            $this->_redirect('index/thankyou');
+            $this->_redirect('index/report');
         }
         
         $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
