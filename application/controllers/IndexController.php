@@ -33,7 +33,7 @@ class IndexController extends Zend_Controller_Action
 	    if(is_null($internalUserId) || empty($internalUserId)){
             //TODO: Uncomment
 	        $this->_user   = $this->getUserFromFacebook();
-	        print_r($this->_user->getName() . ' - ');
+
 	        //TODO: Delete test code
 	        // $this->_user = $this->_mappers['USER']->find(71);
 	    } else {
@@ -41,12 +41,13 @@ class IndexController extends Zend_Controller_Action
 	    }
 	    
 	    $this->_survey = $this->_mappers['SURVEY']->find(Application_Model_Survey::$DEFAULT_SURVEY);
-        die();
+        print_r($this->_user->getName());
 	}
 
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
+            print_r("...redirecting...");
             $this->_redirect('index/report');
         }
         
@@ -114,6 +115,7 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
+        print_r("entro a report " . $this->_user->getId());die();
         $this->_helper->layout->setLayout('gexfLayout');
          
         if(!$this->_user->hasReport()) {
