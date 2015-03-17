@@ -46,7 +46,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {		   
         if ($this->_user->hasFinishedSurvey()) {
-            $this->_redirect('index/report');
+            $this->_forward('report', 'index');
         }
         
         $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
@@ -113,7 +113,6 @@ class IndexController extends Zend_Controller_Action
     
     public function reportAction()
     {        
-        print_r("...redirected...");die();
         $this->_helper->layout->setLayout('gexfLayout');
          
         if(!$this->_user->hasReport()) {
