@@ -156,7 +156,7 @@ class Application_Model_UserData
         $companies = explode(PHP_EOL, $companies_names);
         foreach ($companies as $company) {
             $node = new Application_Model_Node();
-            $node->setName($company);
+            $node->setName(trim($company));
             $node->setType(Application_Model_Node::NODE_COMPANY);
             $nodeMapper->save($node);
 

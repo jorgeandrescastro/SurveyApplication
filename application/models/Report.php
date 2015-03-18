@@ -182,10 +182,13 @@ class Application_Model_Report
         $graph->appendChild($edgesElement);
 
         $root->appendChild($graph);
-        $xml->formatOutput = true;
+        $xml->formatOutput = false;
+        $xml->preserveWhiteSpace = false;
 
-        $this->saveReport($this->_userId, $xml);
-        // echo "<xmp>". $xml->saveXML() ."</xmp>";
+        // $this->saveReport($this->_userId, $xml);
+        // echo "<xmp>". $xml->saveXML() ."</xmp>";die();
+        $xmlString = $this->prepareXmlContent($xml->saveXML());
+        return $xmlString;
      }     
 
      /**
@@ -196,6 +199,17 @@ class Application_Model_Report
      private function saveReport($name, $xml) 
      {
         $xml->save("gexf/report-$name.gexf") or die("Error");      
+     }
+
+     /**
+      * Prepares the XML string to be delivered to the Sigma Library
+      * @param  [string] $xml [description]
+      * @return [string]      [String representation of the XML]
+      */
+     private function prepareXmlContent($xml) {
+        $xml = str_replace('<?xml version="1.0" encoding="UTF-8"?>','',$xml);
+        $xml = trim($xml);
+        return $xml;
      }
 
 }

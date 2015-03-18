@@ -32,10 +32,10 @@ class IndexController extends Zend_Controller_Action
 
 	    if(is_null($internalUserId) || empty($internalUserId)){
             //TODO: Uncomment
-	        $this->_user   = $this->getUserFromFacebook();
+	        // $this->_user   = $this->getUserFromFacebook();
 
 	        //TODO: Delete test code
-	        // $this->_user = $this->_mappers['USER']->find(71);
+	        $this->_user = $this->_mappers['USER']->find(71);
 	    } else {
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
@@ -117,14 +117,14 @@ class IndexController extends Zend_Controller_Action
          
         if(!$this->_user->hasReport()) {
             $this->processInformation();
-
-            $report = $this->_mappers['REPORT']->fetchReport($this->_user->getId());
-            $report->generateGEXFReport();
-
             $this->_user->setReport(1);
             $this->_mappers['USER']->save($this->_user);
         }
 
+        $report = $this->_mappers['REPORT']->fetchReport($this->_user->getId());
+        $xml = $report->generateGEXFReport();
+        
+        $this->view->xml = $xml;
         $this->view->userid = $this->_user->getId();
     }
     
