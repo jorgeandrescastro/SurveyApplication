@@ -255,4 +255,17 @@ class Application_Model_User
     {
         return (1 == $this->_report);
     }
+    
+    /**
+     * Gets the jobs of the user 
+     * @return string
+     */
+    public function getJobs() 
+    {
+        $jobs = ''; 
+        if(isset($this->_fbdata[16])) {
+            $jobs = implode(',',$this->_fbdata[16]);
+        }
+        return $jobs;
+    }
 }

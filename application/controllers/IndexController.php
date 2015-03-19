@@ -63,7 +63,7 @@ class IndexController extends Zend_Controller_Action
     }
     
     public function viewAction()
-    {	        
+    {	                
         $blocks = $this->_mappers['BLOCK']->fetchBlocksFromSurvey($this->_survey);
         $this->_survey->setBlocks($blocks);
         
@@ -105,6 +105,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->current = $this->_user->getCurrentBlock();
         $this->view->block   = $currentBlock;
         $this->view->blocks  = $blocks;
+        $this->view->jobs    = $this->_user->getJobs();
     }
     
     public function thankyouAction()
