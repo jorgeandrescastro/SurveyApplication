@@ -15,11 +15,7 @@
 var xmlString = '<? echo $this->xml; ?>';
 var parser = new DOMParser();
 var doc = parser.parseFromString(xmlString, "text/xml");
-// sigma.parsers.gexf('../../gexf/gexfejm1.gexf', {
-// sigma.parsers.gexf('../../gexf/arctic.gexf', {
-// sigma.parsers.gexf('../../gexf/lesmiserables.gexf', {
-// sigma.parsers.gexf('../../gexf/test.gexf', { 
-// sigma.parsers.gexf('../../gexf/report-<? echo $this->userid; ?>.gexf', { 
+
 sigma.parsers.gexf(doc, { 
   container: 'graph-container'
 });
