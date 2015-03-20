@@ -26,6 +26,9 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
      */
     public function fetchReport($userId) 
     {
+        $nodes = $this->getAssociatedNodes($userId);
+        print_r($nodes);die();
+        
         //Fetches the Nodes
         $resultNodes = $this->getDbTable($this->_dbTableNodeClassName)->fetchAll();
 
@@ -70,6 +73,28 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
         $report->setEdges($edges);
 
         return $report;
+    }
+    
+    private function getAssociatedNodes($userid) 
+    {
+        $associatedNodes = array();
+        $toAddNodes = array($userid);
+        while(count($toAddNodes) > 0) {
+            $associatedNodes = array_merge($associatedNodes, $toAddNodes);            
+            
+            $select = $this->getDbTable($this->_dbTableEdgeClassName)
+                            ->select()->where('source IN (?)', $toAddNodes)
+                            ->orWhere('target IN (?)', $toAddNodes);
+            
+            $resultSet = $this->getDbTable($this->_dbTableEdgeClassName)->getAdapter()->fetchAll($select);
+            
+            print_r($resultSet);die();
+            
+            $toAddNodes = array();
+            
+        }
+        
+        return $associatedNodes;
     }
     
 }
