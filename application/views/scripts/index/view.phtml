@@ -7,3 +7,18 @@
     <?php echo $this->partial('common/sidebar.phtml', array('blocks' => $this->blocks, 'current' => $this->current)); ?>
   </div>
 </div>
+
+<script>
+$(function() {
+	if($("#question_58").length ) {
+		var jobs = '<? echo $this->jobs; ?>';
+	    if(jobs.length > 0) {
+			var availableJobs = jobs.split(',');
+		    
+	        $( "#question_58" ).autocomplete({
+	          source: availableJobs
+	        });
+		}
+	}
+});
+</script>

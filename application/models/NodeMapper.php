@@ -45,6 +45,11 @@ class Application_Model_NodeMapper extends Application_Model_AbstractMapper
         
     }
     
+    /**
+     * Find a node by its name
+     * @param string $name
+     * @return void|Application_Model_Node
+     */
     private function findByNodeName($name) {
         $select = $this->getDbTable($this->_dbTableClassName)
                        ->select()->where('name = ?', $name)->limit(1);

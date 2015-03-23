@@ -5,7 +5,11 @@
     <title>Universidad del Valle</title>
     <?php 
         echo $this->headLink()->appendStylesheet('/css/global.css');
+        echo $this->headLink()->appendStylesheet('/js/jquery-ui-1.11.4.custom/jquery-ui.css');        
         echo $this->headLink()->appendStylesheet('/css/bootstrap.min.css'); 
+        echo $this->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+        echo $this->headScript()->appendFile('/js/jquery-ui-1.11.4.custom/external/jquery/jquery.js');
+        echo $this->headScript()->appendFile('/js/jquery-ui-1.11.4.custom/jquery-ui.js');
         echo $this->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
         echo $this->headScript()->appendFile('/js/bootstrap.min.js');
         echo $this->headScript()->appendFile('/js/questions.js');

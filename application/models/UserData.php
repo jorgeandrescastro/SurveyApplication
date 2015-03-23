@@ -166,6 +166,16 @@ class Application_Model_UserData
 
      }
 
+     /**
+      * Creates the nodes and edges for work relationships
+      * @param Application_Model_NodeMapper $nodeMapper
+      * @param Application_Model_EdgeMapper $edgeMapper
+      * @param string $work
+      * @param string $contact
+      * @param string $contactWork
+      * @param string $intermediary
+      * @param string $nodeMain
+      */
      private static function generateWorkInformationNodes($nodeMapper, $edgeMapper, $work, $contact, $contactWork, $intermediary, $nodeMain) 
      {
         $nodeWork = new Application_Model_Node();

@@ -27,6 +27,12 @@ class Application_Model_EdgeMapper extends Application_Model_AbstractMapper
             'target' => $edge->getTarget(),
         );
         
+        $existingEdge = $this->findEdge($edge->getSource(), $edge->getTarget());
+        if(!is_null($existingEdge)) {
+            $edge = $existingEdge;
+            $data['id'] = $edge->getId();
+        }
+        
         if (!is_null($edge->getId())) {
             return $this->getDbTable($this->_dbTableClassName)->update($data, array('id = ?' => $data['id']));
         } else {
@@ -36,6 +42,32 @@ class Application_Model_EdgeMapper extends Application_Model_AbstractMapper
             return $edgeId;
         }
         
+    }
+    
+    /**
+     * Find an Edge by its source and target
+     * @param int $source
+     * @param int $target
+     * @return void|Application_Model_Edge
+     */
+    private function findEdge($source, $target) {
+        $select = $this->getDbTable($this->_dbTableClassName)
+        ->select()->where('source = ?', $source)
+                  ->where('target = ?', $target)->limit(1);
+    
+        $resultSet = $this->getDbTable($this->_dbTableClassName)->getAdapter()->fetchAll($select);
+    
+        if(count($resultSet) > 0) {
+            $row = current($resultSet);
+            $edge = new Application_Model_Edge();
+            $edge->setId($row['id'])
+            ->setSource($row['source'])
+            ->setTarget($row['target']);
+    
+            return $edge;
+        }
+    
+        return;
     }
     
 }
