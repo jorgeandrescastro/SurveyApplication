@@ -90,7 +90,17 @@ class Application_Model_FB
                 $request = new FacebookRequest($session, 'GET', '/me');
                 $response = $request->execute();
                 $me = $response->getGraphObject()->asArray();
-                print_r($me);die();
+                // print_r($me);die();
+                $id = $me['id'];
+
+                $request = new FacebookRequest(
+                  $session,
+                  'GET',
+                  '/'.$id.'/taggable_friends'
+                );
+                $response = $request->execute();
+                $graphObject = $response->getGraphObject();
+                print_r($graphObject);die();
                 return $me;
             }catch(FacebookRequestException $e) {
         		echo $e->getMessage();
