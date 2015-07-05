@@ -95,13 +95,15 @@ class Application_Model_FB
                 $request = new FacebookRequest($session, 'GET', "/$user_id/taggable_friends");
                 $response = $request->execute();
                 $graphObject = $response->getGraphObject()->asArray();
-                // print_r($graphObject['data'][0]->name);die();
+
                 $user_friends = array();
                 foreach ($graphObject['data'] as $value) {
                   $user_friends[] = $value->name;
                 }
-                print_r($user_friends);die();
+                $me['friends'] = $user_friends;
+
                 return $me;
+
             }catch(FacebookRequestException $e) {
         		echo $e->getMessage();
         	}
@@ -135,7 +137,8 @@ class Application_Model_FB
                           4 => $hometown->name,
                           6 => $me['birthday'],
                           7 => ($me['gender'] == 'male') ? 'Masculino' : 'Femenino',
-                          16 => $work_info
+                          16 => $work_info,
+                          'friends' => $me['friends']
         );
         return $userInfo;
     }

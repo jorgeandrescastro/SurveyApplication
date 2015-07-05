@@ -15,7 +15,7 @@ textarea {
 }
 
 .header .coaptar-logo {
-  width: 144px;
+  width: 210px;
 }
 
 .content {
@@ -24,17 +24,14 @@ textarea {
 
 .footer {
 	background-color: #337ab7;
-	height: 56px;
+	height: 72px;
 	margin-top: 30px;
 	padding: 6px 18px 0 0;
 	border-radius: 5px;
 }
 
 .footer img {
-	width: 120px;
-	height: 20px;
-	position: relative;
-	top: 21px;
+	width: 150px;
 }
 
 .errors li, .error {
@@ -52,6 +49,10 @@ textarea {
 	background-position:top right;
 	background-repeat:no-repeat;
 	padding-right:20px;
+}
+
+.sidebar-menu {
+	margin-top: 20px;
 }
 
 .sidebar-menu a {
