@@ -5,9 +5,9 @@
 <div id="graph">
   <div id="graph-container"></div>
   <div id="graph-info">
-    <div class="pull-left margin-spacer"><div class="margin-spacer circle maroon"></div> Tu </div>
-    <div class="pull-left margin-spacer"><div class="margin-spacer circle green"></div> Compañías </div>
-    <div class="pull-left margin-spacer"><div class="margin-spacer circle orange"></div> Contactos </div>
+    <div class="pull-left margin-spacer"><div class="margin-spacer circle blue-main"></div> Tú </div>
+    <div class="pull-left margin-spacer"><div class="margin-spacer circle blue-contact"></div> Contactos </div>
+    <div class="pull-left margin-spacer"><div class="margin-spacer circle blue-company"></div> Compañías </div>
   </div>
 </div>
 
@@ -19,6 +19,21 @@ var doc = parser.parseFromString(xmlString, "text/xml");
 sigma.parsers.gexf(doc, { 
   container: 'graph-container'
 });
+// 
+// sigma.parsers.gexf(
+//     // 'https://raw.githubusercontent.com/jorgeandrescastro/SurveyApplication/master/public/gexf/Red_Ego.gexf',
+//     // 'https://raw.githubusercontent.com/jorgeandrescastro/SurveyApplication/master/public/gexf/Red%20_Total.gexf',
+//     'https://raw.githubusercontent.com/jorgeandrescastro/SurveyApplication/master/public/gexf/Red_Total_Intermediacion.gexf',
+//     { // Here is the ID of the DOM element that
+//       // will contain the graph:
+//       container: 'graph-container'
+//     },
+//     function(s) {
+//       // This function will be executed when the
+//       // graph is displayed, with "s" the related
+//       // sigma instance.
+//     }
+//   );
 </script>
 
 

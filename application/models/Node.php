@@ -17,10 +17,10 @@ class Application_Model_Node
 
 
      protected $_colors = array(
-                          Application_Model_Node::NODE_MAIN => array('r' => 128, 'g' => 0, 'b' => 0),
+                          Application_Model_Node::NODE_MAIN => array('r' => 2, 'g' => 6, 'b' => 48),
                           Application_Model_Node::NODE_USER => array('r' => 255, 'g' => 255, 'b' => 255),
-                          Application_Model_Node::NODE_CONTACT => array('r' => 255, 'g' => 165, 'b' => 0),
-                          Application_Model_Node::NODE_COMPANY => array('r' => 0, 'g' => 128, 'b' => 0));
+                          Application_Model_Node::NODE_CONTACT => array('r' => 12, 'g' => 24, 'b' => 151),
+                          Application_Model_Node::NODE_COMPANY => array('r' => 161, 'g' => 168, 'b' => 243));
 
      /**
       * Id of the Node
@@ -147,11 +147,27 @@ class Application_Model_Node
       * @return int
       */
      public function getPosition() {
-         if($this->_type == $this::NODE_MAIN) {
-             return 0;
-         } else {
-             return rand(-200, 200);
+         // if($this->_type == $this::NODE_MAIN) {
+         //     return 0;
+         // } elseif($this->_type == ) {
+         //     return rand(-200, 200);
+         // }
+         switch ($this->_type) {
+           case Application_Model_Node::NODE_MAIN:
+             $position = 0;
+             break;
+           case Application_Model_Node::NODE_CONTACT:
+             $position = rand(-100, 100);
+             break;
+           case Application_Model_Node::NODE_COMPANY:
+             $position = rand(100,200);
+             $position = (($position % 2) == 1) ? $position * (-1) : $position;
+             break;
+           default:
+             $position = rand(-200,200);
+             break;
          }
+         return $position;
      }
 
 
@@ -164,12 +180,9 @@ class Application_Model_Node
           case Application_Model_Node::NODE_MAIN:
             $size = 3;
             break;
-          case Application_Model_Node::NODE_COMPANY:
-            $size = 2;
-            break;
           
           default:
-            $size = 1;
+            $size = 2;
             break;
         }
         return $size;

@@ -26,8 +26,8 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
      */
     public function fetchReport($userId) 
     {
-        $nodes = $this->getAssociatedNodes($userId);
-        print_r($nodes);die();
+        // $nodes = $this->getAssociatedNodes($userId);
+        // print_r($nodes);die();
         
         //Fetches the Nodes
         $resultNodes = $this->getDbTable($this->_dbTableNodeClassName)->fetchAll();

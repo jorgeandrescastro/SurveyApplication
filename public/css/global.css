@@ -97,6 +97,18 @@ select optgroup {
 	background: #FFA500;
 }
 
+.blue-main {
+	background: rgb(2,6,48);
+}
+
+.blue-company {
+	background: rgb(61,77,243);
+}
+
+.blue-contact {
+	background: rgb(12,24,151);
+}
+
 .margin-spacer {
 	margin: 0 5px;
 }
