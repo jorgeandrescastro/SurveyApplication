@@ -59,10 +59,8 @@ class Application_Model_EdgeMapper extends Application_Model_AbstractMapper
     
         if(count($resultSet) > 0) {
             $row = current($resultSet);
-            $edge = new Application_Model_Edge();
-            $edge->setId($row['id'])
-            ->setSource($row['source'])
-            ->setTarget($row['target']);
+            $edge = new Application_Model_Edge($row['source'], $row['target']);
+            $edge->setId($row['id']);
     
             return $edge;
         }

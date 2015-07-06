@@ -39,7 +39,7 @@ class IndexController extends Zend_Controller_Action
 	    } else {
 	        $this->_user = $this->_mappers['USER']->find($internalUserId);
 	    }
-	    
+
 	    $this->_survey = $this->_mappers['SURVEY']->find(Application_Model_Survey::$DEFAULT_SURVEY);
 	}
 
@@ -185,7 +185,7 @@ class IndexController extends Zend_Controller_Action
      */
     private function processInformation(){
         $user_data = $this->_mappers['USERDATA']->getDataFromUser($this->_user);    
-        Application_Model_UserData::generateNodes($user_data);
+        Application_Model_UserData::generateNodes($user_data, $this->_user);
     }
     
 }

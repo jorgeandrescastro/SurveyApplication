@@ -123,9 +123,10 @@ class Application_Model_UserData
      /**
       * Generate nodes and edges out of the user data
       * @param  array $user_data
+      * @param  stdClass $user
       * @return [array]
       */
-     public static function generateNodes($user_data) {
+     public static function generateNodes($user_data, $user) {
         $nodes = array();
         $edges = array();
 
@@ -141,6 +142,8 @@ class Application_Model_UserData
         $nodeMain->setName($blockResults[1]['question_3']);
         $nodeMain->setType(Application_Model_Node::NODE_CONTACT);
         $nodeMapper->save($nodeMain);
+
+        Application_Model_UserData::generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper);
 
         Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[2]['question_58'],
                                             $blockResults[2]['question_18'], $blockResults[2]['question_21'],
@@ -235,6 +238,26 @@ class Application_Model_UserData
               $edgeMapper->save($edge);
             }
           }
+        }
+     }
+
+     /**
+      * Creates the nodes and edges for facebook friends
+      * @param Application_Model_User $user
+      * @param Application_Model_Node $nodeMain
+      * @param Application_Model_NodeMapper $nodeMapper
+      * @param Application_Model_EdgeMapper $edgeMapper
+      */
+     private static function generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper) {
+        $friends = explode(',',$user->getFacebookFriends());
+        foreach ($friends as $friend) {
+          $nodeFriend = new Application_Model_Node();
+          $nodeFriend->setName(addslashes($friend));
+          $nodeFriend->setType(Application_Model_Node::NODE_CONTACT);
+          $nodeMapper->save($nodeFriend);
+
+          $edgeFriend = new Application_Model_Edge($nodeMain->getId(), $nodeFriend->getId());
+          $edgeMapper->save($edgeFriend);
         }
      }
      
