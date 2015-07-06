@@ -11,7 +11,7 @@
 <script>
 $(function() {
 	if($("#question_58").length ) {
-		var jobs = '<? echo $this->jobs; ?>';
+		var jobs = "<? echo $this->jobs; ?>";
 	    if(jobs.length > 0) {
 			var availableJobs = jobs.split(',');
 		    
@@ -20,5 +20,33 @@ $(function() {
 	        });
 		}
 	}
+});
+
+$(function() {
+  if($("#question_18").length ) {
+    var friends = "<? echo $this->friends; ?>";
+
+      if(friends.length > 0) {
+      var friends = friends.split(',');
+        
+          $( "#question_18" ).autocomplete({
+            source: friends
+          });
+    }
+  }
+});
+
+$(function() {
+  if($("#question_39").length ) {
+    var friends = "<? echo $this->friends; ?>";
+
+      if(friends.length > 0) {
+      var friends = friends.split(',');
+        
+          $( "#question_39" ).autocomplete({
+            source: friends
+          });
+    }
+  }
 });
 </script>

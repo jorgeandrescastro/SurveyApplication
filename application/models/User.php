@@ -268,4 +268,18 @@ class Application_Model_User
         }
         return $jobs;
     }
+
+    /**
+     * Gets the facebook friends of the user 
+     * @return string
+     */
+    public function getFacebookFriends()
+    {
+        $friends = ''; 
+        if(isset($this->_fbdata['friends'])) {
+            $friends = implode(',',$this->_fbdata['friends']);
+        }
+
+        return $friends;
+    }
 }

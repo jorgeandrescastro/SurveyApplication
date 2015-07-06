@@ -100,12 +100,13 @@ class IndexController extends Zend_Controller_Action
                 }                 
             }
         }
-        
+        $this->_user->getFacebookFriends();
         $this->view->form 	 = $form;
         $this->view->current = $this->_user->getCurrentBlock();
         $this->view->block   = $currentBlock;
         $this->view->blocks  = $blocks;
         $this->view->jobs    = $this->_user->getJobs();
+        $this->view->friends = $this->_user->getFacebookFriends();
     }
     
     public function thankyouAction()
