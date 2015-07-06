@@ -185,7 +185,7 @@ class Application_Model_Report
         $xml->formatOutput = false;
         $xml->preserveWhiteSpace = false;
 
-        // $this->saveReport($this->_userId, $xml);
+        $this->saveReport($this->_userId, $xml);
         // echo "<xmp>". $xml->saveXML() ."</xmp>";die();
         $xmlString = $this->prepareXmlContent($xml->saveXML());
         return $xmlString;
