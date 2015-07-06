@@ -130,28 +130,31 @@ class Application_Model_UserData
         $nodes = array();
         $edges = array();
 
+        $userId = $user_data[1]->getUserId();
+
         $nodeMapper = new Application_Model_NodeMapper();
         $edgeMapper = new Application_Model_EdgeMapper();
+        $reportEdgeMapper = new Application_Model_ReportEdgeMapper();
         $blockResults = array (1 => $user_data[1]->getResults(),
                 2 => $user_data[2]->getResults(),
                 3 => $user_data[3]->getResults(),
         );
 
         $nodeMain = new Application_Model_Node();
-        $nodeMain->setUser($user_data[1]->getUserId());
+        $nodeMain->setUser($userId);
         $nodeMain->setName($blockResults[1]['question_3']);
         $nodeMain->setType(Application_Model_Node::NODE_CONTACT);
         $nodeMapper->save($nodeMain);
 
-        Application_Model_UserData::generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper);
+        Application_Model_UserData::generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper, $reportEdgeMapper);
 
-        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[2]['question_58'],
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $reportEdgeMapper, $blockResults[2]['question_58'],
                                             $blockResults[2]['question_18'], $blockResults[2]['question_21'],
-                                            $blockResults[2]['question_24'], $nodeMain);
+                                            $blockResults[2]['question_24'], $nodeMain, $userId);
 
-        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $blockResults[3]['question_28'],
+        Application_Model_UserData::generateWorkInformationNodes($nodeMapper, $edgeMapper, $reportEdgeMapper, $blockResults[3]['question_28'],
                                             $blockResults[3]['question_39'], $blockResults[3]['question_42'],
-                                            $blockResults[3]['question_45'], $nodeMain);
+                                            $blockResults[3]['question_45'], $nodeMain, $userId);
 
 
 
@@ -165,6 +168,7 @@ class Application_Model_UserData
 
             $edge = new Application_Model_Edge($nodeMain->getId(), $node->getId());
             $edgeMapper->save($edge);
+            $reportEdgeMapper->save($user->getId(), $edge->getId());
         }
 
      }
@@ -179,7 +183,7 @@ class Application_Model_UserData
       * @param string $intermediary
       * @param string $nodeMain
       */
-     private static function generateWorkInformationNodes($nodeMapper, $edgeMapper, $work, $contact, $contactWork, $intermediary, $nodeMain) 
+     private static function generateWorkInformationNodes($nodeMapper, $edgeMapper, $reportEdgeMapper, $work, $contact, $contactWork, $intermediary, $nodeMain, $userId) 
      {
         $nodeWork = new Application_Model_Node();
         $nodeWork->setName($work);
@@ -218,24 +222,31 @@ class Application_Model_UserData
         if(empty($nodeDirectContact)) {
           $edge = new Application_Model_Edge($nodeMain->getId(), $nodeWork->getId());
           $edgeMapper->save($edge);
+          $reportEdgeMapper->save($userId, $edge->getId());
         } else {
           $edge = new Application_Model_Edge($nodeMain->getId(), $nodeDirectContact->getId());
           $edgeMapper->save($edge);
+          $reportEdgeMapper->save($userId, $edge->getId());
           if(!empty($nodeDirectWork)) {
             $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeDirectWork->getId());
             $edgeMapper->save($edge);
+            $reportEdgeMapper->save($userId, $edge->getId());
           }
           if(empty($nodeIndirectContact)) {
             $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeWork->getId());
             $edgeMapper->save($edge);
+            $reportEdgeMapper->save($userId, $edge->getId());
           } else {
             $edge = new Application_Model_Edge($nodeDirectContact->getId(), $nodeIndirectContact->getId());
             $edgeMapper->save($edge);
+            $reportEdgeMapper->save($userId, $edge->getId());
             $edge = new Application_Model_Edge($nodeIndirectContact->getId(), $nodeWork->getId());
             $edgeMapper->save($edge);
+            $reportEdgeMapper->save($userId, $edge->getId());
             if(!empty($nodeIndirectWork)) {
               $edge = new Application_Model_Edge($nodeIndirectContact->getId(), $nodeIndirectWork->getId());
               $edgeMapper->save($edge);
+              $reportEdgeMapper->save($userId, $edge->getId());
             }
           }
         }
@@ -247,8 +258,9 @@ class Application_Model_UserData
       * @param Application_Model_Node $nodeMain
       * @param Application_Model_NodeMapper $nodeMapper
       * @param Application_Model_EdgeMapper $edgeMapper
+      * @param Application_Model_ReportEdgeMapper $reportEdgeMapper
       */
-     private static function generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper) {
+     private static function generateFriendsNodes($user, $nodeMain, $nodeMapper, $edgeMapper, $reportEdgeMapper) {
         $friends = explode(',',$user->getFacebookFriends());
         foreach ($friends as $friend) {
           $nodeFriend = new Application_Model_Node();
@@ -258,6 +270,7 @@ class Application_Model_UserData
 
           $edgeFriend = new Application_Model_Edge($nodeMain->getId(), $nodeFriend->getId());
           $edgeMapper->save($edgeFriend);
+          $reportEdgeMapper->save($user->getId(), $edgeFriend->getId());
         }
      }
      

@@ -687,3 +687,7 @@ CREATE TABLE `univalle_survey_information`.`nodes` (
 
 
 
+CREATE TABLE `univalle_survey_information`.`report_edges` (
+  `report_id` INT NOT NULL,
+  `edge_id` INT NOT NULL,
+  PRIMARY KEY (`report_id`, `edge_id`));

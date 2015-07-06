@@ -19,6 +19,12 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
      * @var string
      */
     private $_dbTableEdgeClassName = 'Application_Model_DbTable_Edge';
+
+    /**
+     * DB table class name for ReportEdge
+     * @var string
+     */
+    private $_dbTableReportEdgeClassName = 'Application_Model_DbTable_ReportEdge';
     
     /**
      * Feeds the Report information
@@ -26,11 +32,14 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
      */
     public function fetchReport($userId) 
     {
-        // $nodes = $this->getAssociatedNodes($userId);
-        // print_r($nodes);die();
-        
+        $associatedNodes = $this->getAssociatedNodes($userId);
+
         //Fetches the Nodes
-        $resultNodes = $this->getDbTable($this->_dbTableNodeClassName)->fetchAll();
+        $this->_dbTable = null;
+        $select = $this->getDbTable($this->_dbTableNodeClassName)
+            ->select()->where('id IN (?)', $associatedNodes['nodes']);
+        
+        $resultNodes = $this->getDbTable($this->_dbTableNodeClassName)->fetchAll($select);
 
         if(0 == count($resultNodes))
         {
@@ -38,6 +47,7 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
         }
         $nodes = array();
         foreach($resultNodes as $row) {
+
             $node = new Application_Model_Node();
             $node->setId($row['id'])
                  ->setUser($row['user'])
@@ -50,10 +60,11 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
             
             $nodes[$row['id']] = $node;
         }
-
         //Fetches the Edges
         $this->_dbTable = null;
-        $resultEdges = $this->getDbTable($this->_dbTableEdgeClassName)->fetchAll();
+        $select = $this->getDbTable($this->_dbTableEdgeClassName)
+            ->select()->where('id IN (?)', $associatedNodes['edges']);
+        $resultEdges = $this->getDbTable($this->_dbTableEdgeClassName)->fetchAll($select);
 
         if(0 == count($resultEdges))
         {
@@ -75,25 +86,32 @@ class Application_Model_ReportMapper extends Application_Model_AbstractMapper
         return $report;
     }
     
+    /**
+     * [getAssociatedNodes Gets the Nodes and edges that belong to the user]
+     * @param  [type] $userid [description]
+     * @return [type]         [description]
+     */
     private function getAssociatedNodes($userid) 
     {
-        $associatedNodes = array();
-        $toAddNodes = array($userid);
-        while(count($toAddNodes) > 0) {
-            $associatedNodes = array_merge($associatedNodes, $toAddNodes);            
-            
-            $select = $this->getDbTable($this->_dbTableEdgeClassName)
-                            ->select()->where('source IN (?)', $toAddNodes)
-                            ->orWhere('target IN (?)', $toAddNodes);
-            
-            $resultSet = $this->getDbTable($this->_dbTableEdgeClassName)->getAdapter()->fetchAll($select);
-            
-            print_r($resultSet);die();
-            
-            $toAddNodes = array();
-            
-        }
-        
+        $select = $this->getDbTable($this->_dbTableReportEdgeClassName)
+                ->select()->distinct('edge_id')->where('report_id = (?)', $userid);
+
+        $resultSet = $this->getDbTable($this->_dbTableReportEdgeClassName)->getAdapter()->fetchAll($select);
+
+        $edges = array_column($resultSet, 'edge_id');
+
+
+        $this->_dbTable = null;
+        $select = $this->getDbTable($this->_dbTableEdgeClassName)
+                ->select()->where('id IN (?)', $edges);
+
+        $resultSet = $this->getDbTable($this->_dbTableEdgeClassName)->getAdapter()->fetchAll($select);
+
+        $nodes = array_unique(array_merge(array_column($resultSet, 'source'), 
+                                    array_column($resultSet, 'target')));
+    
+        $associatedNodes = array('nodes' => $nodes, 'edges' => $edges);
+
         return $associatedNodes;
     }
     
