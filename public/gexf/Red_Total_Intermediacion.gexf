@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2015-05-23">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="Profesión" title="Profesión" type="liststring"></attribute>
+      <attribute id="Universidad" title="Universidad" type="liststring"></attribute>
+      <attribute id="Empresa" title="Empresa" type="liststring"></attribute>
+      <attribute id="Intermediación" title="Intermediación" type="liststring"></attribute>
+      <attribute id="Numero de Intermediaciones" title="Numero de Intermediaciones" type="liststring"></attribute>
+      <attribute id="Distancia de Intermediacón" title="Distancia de Intermediacón" type="liststring"></attribute>
+      <attribute id="1 Proceso de Intermediacón" title="1 Proceso de Intermediacón" type="liststring"></attribute>
+      <attribute id="2 Proceso de Intermediación" title="2 Proceso de Intermediación" type="liststring"></attribute>
+      <attribute id="Empleo por familiares o amigos" title="Empleo por familiares o amigos" type="liststring"></attribute>
+    </attributes>
+    <nodes>
+      <node id="1" label="Camilo">
+        <attvalues>
+          <attvalue for="Profesión" value="Ingeniero de Sistemas"></attvalue>
+          <attvalue for="Universidad" value="Universidad Nacional"></attvalue>
+          <attvalue for="Empresa" value="Linkstaria"></attvalue>
+          <attvalue for="Intermediación" value="Sí"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="2"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="1,2"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="(3-1-8)"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="(4-1-5-10)"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="No"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="43.742847" y="-64.66423" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="2" label="Alejandro">
+        <attvalues>
+          <attvalue for="Profesión" value="Ingerniero de Sistemas"></attvalue>
+          <attvalue for="Universidad" value="Universidad Nacional"></attvalue>
+          <attvalue for="Empresa" value="RCN"></attvalue>
+          <attvalue for="Intermediación" value="Sí"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="1"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="2"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="(6-2-7-11)"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="No"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-4.7023506" y="-77.92044" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="3" label="Carlos">
+        <attvalues>
+          <attvalue for="Profesión" value="Ingeniero de Sistemas"></attvalue>
+          <attvalue for="Universidad" value="Universidad de los Andes"></attvalue>
+          <attvalue for="Empresa" value="Linkstaria"></attvalue>
+          <attvalue for="Intermediación" value="No"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="0"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="0"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="-"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="Sí"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="58.073658" y="-38.575855" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="4" label="Leidy">
+        <attvalues>
+          <attvalue for="Profesión" value="Modelo"></attvalue>
+          <attvalue for="Universidad" value="Top Model Academy"></attvalue>
+          <attvalue for="Empresa" value="Coca-Cola"></attvalue>
+          <attvalue for="Intermediación" value="No"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="0"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="0"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="-"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="Sí"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="23.45212" y="-85.69113" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="5" label="Paula">
+        <attvalues>
+          <attvalue for="Profesión" value="Directora Mercadeo"></attvalue>
+          <attvalue for="Universidad" value="Universidad de los Andres"></attvalue>
+          <attvalue for="Empresa" value="Colca-Cola"></attvalue>
+          <attvalue for="Intermediación" value="Sí"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="1"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="2"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="(4-1-5-10)"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="No"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="73.184715" y="-67.69802" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="6" label="Mariana">
+        <attvalues>
+          <attvalue for="Profesión" value="Economista"></attvalue>
+          <attvalue for="Universidad" value="Universidad del Valle"></attvalue>
+          <attvalue for="Empresa" value="Universidad de los Andes"></attvalue>
+          <attvalue for="Intermediación" value="No"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="0"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="0"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="-"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="Sí"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-30.337164" y="-62.776836" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="7" label="Cristian">
+        <attvalues>
+          <attvalue for="Profesión" value="Físico"></attvalue>
+          <attvalue for="Universidad" value="Universidad del Valle"></attvalue>
+          <attvalue for="Empresa" value="RCN"></attvalue>
+          <attvalue for="Intermediación" value="Sí"></attvalue>
+          <attvalue for="Numero de Intermediaciones" value="1"></attvalue>
+          <attvalue for="Distancia de Intermediacón" value="2"></attvalue>
+          <attvalue for="1 Proceso de Intermediacón" value="(6-2-7-11)"></attvalue>
+          <attvalue for="2 Proceso de Intermediación" value="-"></attvalue>
+          <attvalue for="Empleo por familiares o amigos" value="No"></attvalue>
+        </attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-28.508621" y="-95.53431" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="8" label="Linkstaria">
+        <attvalues></attvalues>
+        <viz:size value="10.0"></viz:size>
+        <viz:position x="-77.29423" y="132.1377" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="9" label="RCN">
+        <attvalues></attvalues>
+        <viz:size value="10.0"></viz:size>
+        <viz:position x="82.39145" y="134.14436" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="10" label="Coca-Cola">
+        <attvalues></attvalues>
+        <viz:size value="10.0"></viz:size>
+        <viz:position x="-0.77050394" y="153.08223" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="11" label="Universidad de los Andres">
+        <attvalues></attvalues>
+        <viz:size value="10.0"></viz:size>
+        <viz:position x="-139.22073" y="73.48909" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="1" target="2">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1" target="3">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1" target="4">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1" target="5">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="2" target="4">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="2" target="6">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="2" target="7">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
